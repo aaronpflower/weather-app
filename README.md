@@ -1,0 +1,1 @@
+Goal, create an application using Node, PostgreSQL, React/Redux, webpack, and forecast.io for a user to save favorite locations and browser current weather and weater history
