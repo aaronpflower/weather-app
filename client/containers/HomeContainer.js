@@ -1,17 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 const Home = require('../components/Home')
 import { getCurrentWeather } from '../actions/actions'
+import { connect } from 'react-redux'
 
 class HomeContainer extends Component{
     constructor(props) {
         super(props)
+        console.log(props)
         this.handleGetWeather = this.handleGetWeather.bind(this)
     }
 
     handleGetWeather() {
         const { dispatch } = this.props
-        console.log(dispatch)
-        dispatch(getCurrentWeather())
+        this.props.dispatch(getCurrentWeather())
     }
 
     render() {
@@ -25,4 +26,11 @@ class HomeContainer extends Component{
     }
 }
 
-export default HomeContainer
+
+const mapStateToProps = (state) => {
+  return {
+       state: console.log(state)
+  };
+}
+
+export default connect(mapStateToProps)(HomeContainer)

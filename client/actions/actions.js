@@ -1,3 +1,4 @@
+const axios = require('axios')
 const { GET_CURRENT_WEATHER } = require('./constants')
 
 export function requestCurrentWeather() {
@@ -7,10 +8,11 @@ export function requestCurrentWeather() {
 }
 
 export function getCurrentWeather() {
+	const action = { type: GET_CURRENT_WEATHER }
 	return dispatch => {
-	dispatch(requestCurrentWeather())
+	// dispatch(requestCurrentWeather())
 	return axios.get('/api/weather')
-		.then(response => console.log(response))
+      	.then(res => dispatch(Object.assign({}, action, { payload: res })))
 		.catch(error => console.log(error))
 	}
 }
