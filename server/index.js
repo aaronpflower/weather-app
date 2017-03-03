@@ -20,15 +20,18 @@ app.use(express.static(root))
 app.use(helmet())
 
 app.get('/api/weather', function(req, res) {
-    var options = {
-		url: 'https://api.darksky.net/forecast/' + proccess.env.FORECAST_SECRET + '/37.8267,-122.4233',
-        method: 'GET',
-    }
-	console.log(options)
+	
+	var options = {
+		uri: 'https://api.darksky.net/forecast/' + process.env.FORECAST_SECRET + '/37.8267,-122.4233',
+		headers: {
+			'User-Agent': 'Request-Promise'
+		},
+		json: true
+	};
+
 	request(options)
 		.then(function(response) {
-			var totalItems = JSON.parse(response)
-			res.send({res: res})
+			res.send(response.currently)
 		})
 		.catch(function(e) {
 			res.send(e)

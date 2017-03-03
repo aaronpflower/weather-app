@@ -23,8 +23,16 @@ module.exports = {
     ],
 
     devServer: {
+        // https://github.com/chimurai/http-proxy-middleware#options ?
+        proxy: {
+            "/api": {
+                target: "http://localhost:3000"
+            }
+        },
         contentBase: path.join(__dirname, "dist"),
-        port: 3001
+        compress: true,
+        port: 3001,
+        historyApiFallback: true
     },
 
     module: {

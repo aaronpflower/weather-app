@@ -1,5 +1,8 @@
-const React = require('react')
-const ReactDOM = require('react-dom')
-const routes = require('./config/routes')
+import React from 'react'
+import { render } from 'react-dom'
+import Root from './config/Root'
 
-ReactDOM.render(routes, document.getElementById('app'))
+render(
+  <Root />,
+  document.getElementById('app')
+)
