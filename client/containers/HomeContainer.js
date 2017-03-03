@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react'
-const Home = require('../components/Home')
 import { getCurrentWeather } from '../actions/actions'
 import { connect } from 'react-redux'
+import Home from '../components/Home'
+
+// Todo: refactor to follow this example: http://redux.js.org/docs/basics/UsageWithReact.html
 
 class HomeContainer extends Component{
     constructor(props) {
         super(props)
-        console.log(props)
         this.handleGetWeather = this.handleGetWeather.bind(this)
     }
 
@@ -26,11 +27,12 @@ class HomeContainer extends Component{
     }
 }
 
-
 const mapStateToProps = (state) => {
   return {
-       state: console.log(state)
+       state: state
   };
 }
 
 export default connect(mapStateToProps)(HomeContainer)
+
+

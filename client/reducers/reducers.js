@@ -7,7 +7,7 @@ function currentWeather(state = { conditions: null }, action) {
     switch (action.type) {
         case GET_CURRENT_WEATHER:
             return Object.assign({}, state, {
-                conditions: action
+                conditions: action.payload.data
             })
         default:
             return state

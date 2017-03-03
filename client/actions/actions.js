@@ -10,7 +10,6 @@ export function requestCurrentWeather() {
 export function getCurrentWeather() {
 	const action = { type: GET_CURRENT_WEATHER }
 	return dispatch => {
-	// dispatch(requestCurrentWeather())
 	return axios.get('/api/weather')
       	.then(res => dispatch(Object.assign({}, action, { payload: res })))
 		.catch(error => console.log(error))

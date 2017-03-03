@@ -15,6 +15,5 @@ const enhancer = composeEnhancers(
 );
 
 export default function configureStore(preloadedState) {
-    console.log('hi')
     return createStore(rootReducer, preloadedState, enhancer)
 }
