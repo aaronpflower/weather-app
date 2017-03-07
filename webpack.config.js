@@ -40,12 +40,21 @@ module.exports = {
             {
                 test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"
             },
+            { 
+                test: /\.json$/, loader: 'json-loader'
+            }
         ]
     },
-    resolve: {
+   	resolve: {
 		modules: [
 			'node_modules',
 			path.resolve(__dirname, 'client'),
 		],
 	},
+    node: {
+        console: true,
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
+    }
  };
