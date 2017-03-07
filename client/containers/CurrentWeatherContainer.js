@@ -9,7 +9,6 @@ class CurrentWeatherContainer extends Component{
     }
 
     render() {
-        console.log(this.props)
         return (
             <CurrentWeather 
             isLoading={this.props.state.currentWeather.isLoading}

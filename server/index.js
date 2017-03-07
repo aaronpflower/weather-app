@@ -9,6 +9,18 @@ const helmet = require('helmet')
 const root = path.join(__dirname, 'dist')
 const port = process.env.PORT || 3000
 const env = process.env.NODE_ENV || 'development'
+const promise = require('bluebird');
+
+const options = {
+    // Initialization Options
+    promiseLib: promise
+};
+
+const pg = require('pg');
+const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/weatherapp';
+
+const client = new pg.Client(connectionString);
+client.connect();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

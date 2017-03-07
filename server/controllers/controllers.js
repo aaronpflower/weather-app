@@ -25,5 +25,9 @@ module.exports = {
             .catch(function(err) {
                 console.log(err);
         });
-    }
+    },
+
+    // signUp: (req, res) => {
+    //     res.send('hi')
+    // }
 }

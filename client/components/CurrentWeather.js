@@ -3,7 +3,6 @@ import moment from 'moment'
 
 
 const CurrentWeather = (props) => {
-    console.log(props)
     return props.isLoading === true
         ? <p> Loading! </p>
         : <div>
