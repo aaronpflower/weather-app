@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router'
+const styles = require('./Main.less');
 
+console.log(styles)
 const Main = (props) => (
     <div> 
         <Link to='/signup'>
-            <button type='button'>Signup</button>
+            <button className={styles.b} type='button'>Signup</button>
         </Link>
         <Link to='/login'>
             <button type='button'>Login</button>

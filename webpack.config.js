@@ -8,6 +8,14 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     inject: 'body'
 })
 
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractLess = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"
+});
+
+
 module.exports = {
     entry: './client/index.js',
     output: {
@@ -19,7 +27,8 @@ module.exports = {
     stats: 'minimal',
 
     plugins: [
-        HTMLWebpackPluginConfig
+        HTMLWebpackPluginConfig,
+        extractLess
     ],
 
     devServer: {
@@ -42,6 +51,30 @@ module.exports = {
             },
             { 
                 test: /\.json$/, loader: 'json-loader'
+            },
+            {
+                 test: /\.less$/,
+                    use: extractLess.extract({
+                        use: [{
+                            loader: "css-loader",
+                            options: {
+                                sourceMap: true,
+                                modules: true,
+                                camelCase: true,
+                            }
+                        }, {
+                            loader: "less-loader"
+                        }],
+                        // use style-loader in development
+                        fallback: "style-loader"
+                    })
+            },
+            {
+                test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000
+                }
             }
         ]
     },
