@@ -55,16 +55,29 @@ module.exports = {
             {
                  test: /\.less$/,
                     use: extractLess.extract({
-                        use: [{
-                            loader: "css-loader",
-                            options: {
-                                sourceMap: true,
-                                modules: true,
-                                camelCase: true,
+                        use: [
+                            {
+                                loader: "css-loader",
+                                options: {
+                                    sourceMap: true,
+                                    modules: true,
+                                    camelCase: true,
+                                }
+                            },
+                            {
+                                loader: 'postcss-loader',
+                                options: {
+                                    plugins: function () {
+                                        return [
+                                            require('autoprefixer')
+                                        ];
+                                    }
+                                }
+                            },
+                            {
+                                loader: "less-loader"
                             }
-                        }, {
-                            loader: "less-loader"
-                        }],
+                        ],
                         // use style-loader in development
                         fallback: "style-loader"
                     })
