@@ -27,7 +27,7 @@ module.exports = {
         });
     },
 
-    // signUp: (req, res) => {
-    //     res.send('hi')
-    // }
+    createUser: (req, res) => {
+        res.send('hi')
+    }
 }
