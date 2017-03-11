@@ -16,7 +16,7 @@ module.exports = {
                 };
                 request(options)
                     .then(function(data) {
-                        res.send(data)
+                        res.send(Object.assign({}, data, {location: response[0].formattedAddress}))
                     })
                     .catch(function(e) {
                         res.send(e)

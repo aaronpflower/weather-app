@@ -10,7 +10,7 @@ const LocationsStream = ({ locations , onLocationClick}) => (
       {locations.map(location =>
         <Location
           key={location.id}
-          text={location.data.timezone}
+          text={location.data.location}
           onClick={() => onLocationClick(location.id)}
         />
       )}
