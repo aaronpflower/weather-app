@@ -1,11 +1,9 @@
 import React, { PropTypes } from 'react'
+import styles from './Location.less'
 
-const Location = ({ onClick, completed, text }) => (
-  <li
+const Location = ({ onClick, text }) => (
+  <li className={styles.container}
     onClick={onClick}
-    style={{
-      textDecoration: completed ? 'line-through' : 'none'
-    }}
   >
     {text}
   </li>
@@ -13,7 +11,6 @@ const Location = ({ onClick, completed, text }) => (
 
 Location.propTypes = {
   onClick: PropTypes.func.isRequired,
-//   completed: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired
 }
 

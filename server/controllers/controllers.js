@@ -16,7 +16,7 @@ module.exports = {
                 };
                 request(options)
                     .then(function(data) {
-                        res.send(data.currently)
+                        res.send(data)
                     })
                     .catch(function(e) {
                         res.send(e)

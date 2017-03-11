@@ -53,12 +53,18 @@ module.exports = {
                 test: /\.json$/, loader: 'json-loader'
             },
             {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader?modules',
+                include: /flexboxgrid/
+            },
+            {
                  test: /\.less$/,
                     use: extractLess.extract({
                         use: [
                             {
                                 loader: "css-loader",
                                 options: {
+                                    localIdentName: '[name]__[local]__[hash:base64:5]',
                                     sourceMap: true,
                                     modules: true,
                                     camelCase: true,

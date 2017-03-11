@@ -2,12 +2,13 @@ import { combineReducers } from 'redux'
 
 const { GET_CURRENT_WEATHER, SIGN_UP, LOGIN } = require('../actions/constants')
 
+let conditionsId = 0
 
-function currentWeather(state = { conditions: null, isLoading: true }, action) {
+function currentWeather(state = { conditions: [], isLoading: true }, action) {
     switch (action.type) {
         case GET_CURRENT_WEATHER:
-            return Object.assign({}, state, {
-                conditions: action.payload.data,
+            return Object.assign({}, ...state, {
+                conditions: [...state.conditions, { data: action.payload.data, id: conditionsId++}],
                 isLoading: false
             })
         default:

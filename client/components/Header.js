@@ -3,49 +3,35 @@ import { getCurrentWeather } from '../actions/actions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import styles from './header.less'
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
-class Header extends Component {
-    constructor(props) {
-        super(props)
-    }
+const Header = (props) => (
+    <Row className={styles.container}>
+        <input
+        className={styles.input}
+        placeholder="Enter Location"
+        onChange={props.onUpdateLocation}
+        value={props.location}
+        />
+        <button className={styles.btn} onClick={props.searchLocation} type="button">
+            search
+        </button>
+        <Link to='/signup'>
+            <button className={styles.btn} type='button'>Signup</button>
+        </Link>
+        <Link to='/login'>
+            <button className={styles.btn} type='button'>Login</button>
+        </Link>
+        <Link to='/'>
+            <button className={styles.btn} type='button'>Home</button>
+        </Link>
+    </Row>
+)
 
-    render() {
-        let input
-        return (
-            <div className={styles.container}>
-                <Link to='/signup'>
-                    <button type='button'>Signup</button>
-                </Link>
-                <Link to='/login'>
-                    <button type='button'>Login</button>
-                </Link>
-                <Link to='/'>
-                    <button type='button'>Home</button>
-                </Link>
-                <form onSubmit={e => {
-                    e.preventDefault()
-                    if (!input.value.trim()) {
-                        return
-                    }
-                    this.props.dispatch(getCurrentWeather(input.value))
-                    input.value = ''
-                }}>
-                    <input ref={node => {
-                        input = node
-                    }} />
-                    <button type="submit">
-                        Get Conditions
-                    </button>
-                </form> 
-            </div>
-        )
-    }
+Header.propTypes = {
+    searchLocation: PropTypes.func.isRequired,
+    location: PropTypes.string.isRequired,
+    onUpdateLocation: PropTypes.func.isRequired
 }
 
-const mapStateToProps = (state) => {
-    return {
-        state: state
-    };
-}
-
-export default connect(mapStateToProps)(Header)
+export default Header
