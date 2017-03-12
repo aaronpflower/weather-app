@@ -15,12 +15,13 @@ class HomeContainer extends Component{
         super(props)
         this.state = {
             location: '',
-            isLocationDetailsEmpty: true,
+            isVisible: false,
             LocationDetails: {}
         }
         this.handleUpdateUser = this.handleUpdateUser.bind(this)
         this.handleLocationSearch = this.handleLocationSearch.bind(this)
         this.handleLocationClick = this.handleLocationClick.bind(this)
+        this.handleLocationClose = this.handleLocationClose.bind(this)
     }
 
     handleUpdateUser(e) {
@@ -34,11 +35,17 @@ class HomeContainer extends Component{
             if (item.id === id) {
                 return this.setState({
                     LocationDetails: item.data,
-                    isLocationDetailsEmpty: false
+                    isVisible: true
                 })
             }
         })
+    }
 
+    handleLocationClose(id) {
+        return this.setState({
+            LocationDetails: {},
+            isVisible: false
+        })
     }
 
     handleLocationSearch() {
@@ -46,24 +53,24 @@ class HomeContainer extends Component{
     }
 
     render() {
-        console.log(this.state.LocationDetails)
         return (
             <Row className={classnames(styles.container)}>
-                <Col xs={12} md={3}>
-                    <LocationsStream
-                        locations={this.props.state.currentWeather.conditions}
-                        onLocationClick={this.handleLocationClick} 
-                    />
-                </Col>
-                <Col xs={12} md={9}>
+                <Col xs={12} md={9} className={classnames(styles.top)}>
                     <Header 
                         searchLocation={this.handleLocationSearch}
                         location={this.state.location}
                         onUpdateLocation={this.handleUpdateUser}
                         />
                     <LocationDetails 
-                        isEmpty={this.state.isLocationDetailsEmpty}
+                        visible={this.state.isVisible}
                         conditions={this.state.LocationDetails}
+                        close={this.handleLocationClose}
+                    />
+                </Col>
+                <Col xs={12} md={3} className={classnames(styles.bottom)}>
+                    <LocationsStream
+                        locations={this.props.state.currentWeather.conditions}
+                        onLocationClick={this.handleLocationClick} 
                     />
                 </Col>
             </Row>

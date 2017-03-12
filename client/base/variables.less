@@ -1,6 +1,3 @@
-// Colors
-// ========================================
-
 @colorPrimary:      #35C5F2;
 @colorPrimaryDark:  #1E90FF;
 @colorPrimaryLight: #DBF3FF;
@@ -12,20 +9,17 @@
 @colorDarkTrans10:  alpha(@colorDark, 0.1);
 @colorDarkTrans20:  alpha(@colorDark, 0.2);
 @colorDarkTrans50:  alpha(@colorDark, 0.5);
-@colorCatHousing:   #FDB913; // yellow;
-@colorCatMedical:   #F04937; // red;
-@colorCatEducation: #29C7B0; // green;
-@colorCatDelivery:  #9B7ADB; // purple;
+@colorCatHousing:   #FDB913;
+@colorCatMedical:   #F04937;
+@colorCatEducation: #29C7B0;
+@colorCatDelivery:  #9B7ADB;
 
 @colorText:         #333;
 @colorLightGray:    #C6C8D2;
 
-// Media Queries, same break points as flexbox grid
-// ========================================
-
-@screen-sm: '(min-width:'+ 48 + 'rem)';
-@screen-md: '(min-width:' + 64 + 'rem)';
-@screen-lg: '(min-width:' + 75 + 'rem)';
+@screen-sm: ~'only screen and (min-width: 48rem)';
+@screen-md: ~'only screen and (min-width: 64rem)';
+@screenLg: ~'only screen and (min-width: 75rem)';
 
 
 @boxShadowNone: 0 0 0;
