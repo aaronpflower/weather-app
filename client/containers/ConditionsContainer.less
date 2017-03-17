@@ -1,0 +1,24 @@
+@import '../base/variables.less';
+
+.container {
+	margin: 0;
+	overflow: hidden;
+	@media @screen-md {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.top {
+	order: 1;
+	@media @screen-md {
+		order: 2;
+	}
+}
+
+.bottom {
+	order: 2;
+	@media @screen-md {
+		order: 1;
+	}
+}

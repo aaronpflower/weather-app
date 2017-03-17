@@ -3,77 +3,87 @@ import { getCurrentWeather } from '../actions/actions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import styles from './HomeContainer.less'
-import { Grid, Row, Col } from 'react-flexbox-grid';
 import classnames from 'classnames'
-
-import LocationDetails from '../components/LocationDetails'
 import Header from '../components/Header'
-import LocationsStream from '../components/LocationsStream'
+import Button from '../components/Button'
+import fonts from '../base/fonts.less'
+import { Grid, Row, Col } from 'react-flexbox-grid';
+
+import Signup from '../components/Signup'
+import Login from '../components/Login'
 
 class HomeContainer extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            location: '',
-            isVisible: false,
-            LocationDetails: {}
+            showLogin: false,
+            showSignup: false,
+            email: '',
+            password: ''
         }
-        this.handleUpdateUser = this.handleUpdateUser.bind(this)
-        this.handleLocationSearch = this.handleLocationSearch.bind(this)
-        this.handleLocationClick = this.handleLocationClick.bind(this)
-        this.handleLocationClose = this.handleLocationClose.bind(this)
+        this.handleUpdateEmail = this.handleUpdateEmail.bind(this)
+        this.handleUpdatePassword = this.handleUpdatePassword.bind(this)
+        this.handleLogin = this.handleLogin.bind(this)
+        this.handleSignup = this.handleSignup.bind(this)
     }
 
-    handleUpdateUser(e) {
+    handleUpdatePassword(e) {
         this.setState({
-            location: e.target.value
+            password: e.target.value
         })
     }
 
-    handleLocationClick(id) {
-        this.props.state.currentWeather.conditions.filter(item => {
-            if (item.id === id) {
-                return this.setState({
-                    LocationDetails: item.data,
-                    isVisible: true
-                })
-            }
+    handleUpdateEmail(e) {
+        this.setState({
+            email: e.target.value
         })
     }
 
-    handleLocationClose(id) {
-        return this.setState({
-            LocationDetails: {},
-            isVisible: false
+    handleLogin() {
+        this.setState({
+            showLogin: true,
+            showSignup: false
         })
     }
 
-    handleLocationSearch() {
-        this.props.dispatch(getCurrentWeather(this.state.location))
+    handleSignup() {
+        this.setState({
+            showSignup: true,
+            showLogin: false
+        })
     }
 
     render() {
         return (
-            <Row className={classnames(styles.container)}>
-                <Col xs={12} md={9} className={classnames(styles.top)}>
-                    <Header 
-                        searchLocation={this.handleLocationSearch}
-                        location={this.state.location}
-                        onUpdateLocation={this.handleUpdateUser}
-                        />
-                    <LocationDetails 
-                        visible={this.state.isVisible}
-                        conditions={this.state.LocationDetails}
-                        close={this.handleLocationClose}
+            <div className={classnames(styles.container)}>
+                <Row between="xs">
+                    <div className={styles.icon}>
+                        <h1 className={fonts.largeText}>Weather App</h1>
+                    </div>
+                    <div className={classnames(styles.links)}>
+                        <Button onClick={this.handleSignup} className={styles.btn} type='Button' innerText='Signup'/>
+                        <Button onClick={this.handleLogin} className={styles.btn} type='button' innerText='Already have an account?'/>
+                    </div>
+                </Row>
+                <Row center="xs">
+                    <Signup
+                        showSignup={this.state.showSignup}
+                        onEmailUpdate={this.handleUpdateEmail}
+                        onPasswordUpdate={this.handleUpdatePassword}
+                        email={this.state.email}
+                        password={this.state.password}
+                        onSignup={this.handleSignup}
                     />
-                </Col>
-                <Col xs={12} md={3} className={classnames(styles.bottom)}>
-                    <LocationsStream
-                        locations={this.props.state.currentWeather.conditions}
-                        onLocationClick={this.handleLocationClick} 
+                    <Login
+                        showLogin={this.state.showLogin}
+                        onEmailUpdate={this.handleUpdateEmail}
+                        onPasswordUpdate={this.handleUpdatePassword}
+                        email={this.state.email}
+                        password={this.state.password}
+                        onLogin={this.handleLogin}
                     />
-                </Col>
-            </Row>
+                </Row>
+            </div>
 
         )
     }

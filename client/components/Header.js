@@ -3,35 +3,36 @@ import { getCurrentWeather } from '../actions/actions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import styles from './header.less'
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import Button from '../components/Button'
+// import { Grid, Row, Col } from 'react-flexbox-grid';
 import classnames from 'classnames'
 
+// http://codepen.io/chriscoyier/pen/FAbpm
 const Header = (props) => (
-    <Row middle="xs" className={styles.container}>
-        <Col xs={9} md={6}>
+    <div className={styles.container}>
+        <div className={styles.item}>
             <input
                 className={styles.input}
                 placeholder="Enter Location"
                 onChange={props.onUpdateLocation}
                 value={props.location}
             />
-            <button className={styles.btn} onClick={props.searchLocation} type="button">
+            <Button onClick={props.searchLocation} type="button" innerText='Search'>
                 <i className={classnames("fa fa-search", styles.searchIcon)} aria-hidden="true"></i>
-                search
-            </button>
-        </Col>
-        <Col xs={1} className={classnames(styles.hammy)}>
+            </Button>
+        </div>
+        <div className={classnames(styles.item, styles.hammy)}>
             <i className={classnames("fa fa-bars")}></i>
-        </Col>
-        <Col xs={12} md={6} className={styles.menu}>
+        </div>
+        <div className={classnames(styles.menu)}>
             <Link to='/signup'>
-                <button className={styles.btn} type='button'>Signup</button>
+                <Button type='button' innerText='Signup' />
             </Link>
             <Link to='/login'>
-                <button className={styles.btn} type='button'>Login</button>
+                <Button type='button' innerText='Login' />
             </Link>
-        </Col>
-    </Row>
+        </div>
+    </div>
 )
 
 Header.propTypes = {

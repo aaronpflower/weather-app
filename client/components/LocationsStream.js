@@ -11,7 +11,7 @@ const LocationsStream = ({ locations , onLocationClick}) => (
         <Location
           key={location.id}
           text={location.data.location}
-          onClick={() => onLocationClick(location.id)}
+          onClick={(e) => onLocationClick(e, location.id)}
         />
       )}
     </ul>
