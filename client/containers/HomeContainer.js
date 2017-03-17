@@ -34,6 +34,7 @@ class HomeContainer extends Component{
     }
 
     handleUpdateEmail(e) {
+        console.log(e)
         this.setState({
             email: e.target.value
         })
@@ -54,6 +55,15 @@ class HomeContainer extends Component{
     }
 
     render() {
+        let intro;
+        if (this.state.showLogin || this.state.showSignup) {
+           intro = null
+        } else {
+           intro = <div className={styles.intro}>
+                <h1 className={fonts.largeText}>Welcome to the Weather App</h1>
+                <p className={fonts.mediumText}>Create an account and access current weather and forcasts from around the world</p>
+            </div>
+        }
         return (
             <div className={classnames(styles.container)}>
                 <Row between="xs">
@@ -65,7 +75,8 @@ class HomeContainer extends Component{
                         <Button onClick={this.handleLogin} className={styles.btn} type='button' innerText='Already have an account?'/>
                     </div>
                 </Row>
-                <Row center="xs">
+                <div className={styles.content}>
+                    {intro}
                     <Signup
                         showSignup={this.state.showSignup}
                         onEmailUpdate={this.handleUpdateEmail}
@@ -82,7 +93,7 @@ class HomeContainer extends Component{
                         password={this.state.password}
                         onLogin={this.handleLogin}
                     />
-                </Row>
+                </div>
             </div>
 
         )

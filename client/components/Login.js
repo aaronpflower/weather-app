@@ -3,37 +3,30 @@ import { login } from '../actions/actions'
 import { connect } from 'react-redux'
 import Button from './Button'
 import Input from './Input'
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import styles from './Signup.less'
 
 const Login = (props) => {
-    console.log(props)
     return props.showLogin === false
     ? null
-    : <Row>
-        <Col xs={12}>
-            <Input
-                type="email"
-                placeholder="Please Enter Email"
-                onChange={props.onEmailUpdate}
-                value={props.email}
-            />
-        </Col>
-        <Col xs={12}>
-            <Input
-                type="password"
-                placeholder="Please Enter Password"
-                onChange={props.onPasswordUpdate}
-                value={props.password}
-            />
-        </Col>
-        <Col xs={12}>
-            <Button 
-                onClick={props.onLogin}
-                type='button'
-                innerText='Login'
-            />
-        </Col>
-    </Row>
+    : <div className={styles.container}>
+        <Input
+            type="email"
+            placeholder="Please Enter Email"
+            onChange={props.onEmailUpdate}
+            value={props.email}
+        />
+        <Input
+            type="password"
+            placeholder="Please Enter Password"
+            onChange={props.onPasswordUpdate}
+            value={props.password}
+        />
+        <Button 
+            onClick={props.onLogin}
+            type='button'
+            innerText='Login'
+        />
+    </div>
 }
 
 Login.propTypes = {
