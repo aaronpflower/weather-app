@@ -25,9 +25,5 @@ module.exports = {
             .catch(function(err) {
                 console.log(err);
         });
-    },
-
-    createUser: (req, res) => {
-        res.send('hi')
     }
 }

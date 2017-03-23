@@ -10,10 +10,19 @@ export function getCurrentWeather(data) {
 	}
 }
 
-export function signUp(data) {
+export function signUp(email, pass) {
 	const action = { type: SIGN_UP }
 	return dispatch => {
-		return axios.post('api/signup', { data: data })
+		return axios.post('api/users/add', { email: email, pass: pass })
+			.then(res => dispatch(Object.assign({}, action, { payload: res })))
+			.catch(error => console.log(error))
+	}
+}
+
+export function login(email, pass) {
+	const action = { type: LOGIN }
+	return dispatch => {
+		return axios.post('api/users/login', { username: email, password: pass })
 			.then(res => dispatch(Object.assign({}, action, { payload: res })))
 			.catch(error => console.log(error))
 	}

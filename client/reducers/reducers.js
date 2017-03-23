@@ -27,9 +27,22 @@ function signUp(state = { user: null }, action) {
     }
 }
 
+// this is sending back request data with password, oh shit!  Change how action and reducers handle shit
+function login(state = { user: null }, action) {
+    switch (action.type) {
+        case LOGIN:
+            return Object.assign({}, state, {
+                user: action.payload.data
+            })
+        default:
+            return state
+    }
+}
+
 const rootReducer = combineReducers({
     currentWeather,
-    signUp
+    signUp,
+    login
 })
 
 export default rootReducer

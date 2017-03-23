@@ -1,26 +1,11 @@
-const db = require('../db');
-const Controllers = require('../controllers/controllers')
+const WeatherController = require('../controllers/weather')
+const UserController = require('../controllers/users')
 
 module.exports = app => {
-    app.post('/api/weather', Controllers.getCurrentWeather)
+    app.post('/api/weather', WeatherController.getCurrentWeather);
 
-    app.get('/api/users/create', db.users.create);
+    app.post('/api/users/add', UserController.add);
 
-    app.get('/api/users/init', db.users.init);
+    app.post('/api/users/login', UserController.login);
 
-    // app.get('/api/users/add/:name', req => db.users.add(req.params.name));
-    app.post('/api/users/add', (req, res) => {
-        db.users.add(req, res)
-    });
-
-    app.get('/api/users/find/:id', req => db.users.find(+req.params.id));
-
-    // remove a user by id:
-    app.get('/api/users/remove/:id', req => db.users.remove(+req.params.id));
-
-    // app.get all users:
-    app.get('/api/users/all', db.users.all);
-
-    // count all users:
-    app.get('/api/users/total', db.users.total);
 }

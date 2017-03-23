@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { getCurrentWeather } from '../actions/actions'
+import { signUp, login } from '../actions/actions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import styles from './HomeContainer.less'
@@ -23,8 +23,10 @@ class HomeContainer extends Component{
         }
         this.handleUpdateEmail = this.handleUpdateEmail.bind(this)
         this.handleUpdatePassword = this.handleUpdatePassword.bind(this)
-        this.handleLogin = this.handleLogin.bind(this)
+        this.showLogin = this.showLogin.bind(this)
+        this.showSignup = this.showSignup.bind(this)
         this.handleSignup = this.handleSignup.bind(this)
+        this.handleLogin = this.handleLogin.bind(this)
     }
 
     handleUpdatePassword(e) {
@@ -34,25 +36,33 @@ class HomeContainer extends Component{
     }
 
     handleUpdateEmail(e) {
-        console.log(e)
         this.setState({
             email: e.target.value
         })
     }
 
-    handleLogin() {
+    showLogin() {
         this.setState({
             showLogin: true,
             showSignup: false
         })
     }
 
-    handleSignup() {
+    showSignup() {
         this.setState({
             showSignup: true,
             showLogin: false
         })
     }
+
+    handleSignup() {
+        this.props.dispatch(signUp(this.state.email, this.state.password))
+    }
+
+    handleLogin() {
+        this.props.dispatch(login(this.state.email, this.state.password))
+    }
+
 
     render() {
         let intro;
@@ -66,13 +76,14 @@ class HomeContainer extends Component{
         }
         return (
             <div className={classnames(styles.container)}>
-                <Row between="xs">
+                <Row between="xs" className={classnames(styles.nav)}>
                     <div className={styles.icon}>
+                        <i className="fa fa-cloud" aria-hidden="true"></i>
                         <h1 className={fonts.largeText}>Weather App</h1>
                     </div>
                     <div className={classnames(styles.links)}>
-                        <Button onClick={this.handleSignup} className={styles.btn} type='Button' innerText='Signup'/>
-                        <Button onClick={this.handleLogin} className={styles.btn} type='button' innerText='Already have an account?'/>
+                        <Button onClick={this.showSignup} type='Button' innerText='Signup'/>
+                        <Button onClick={this.showLogin} type='button' innerText='Already have an account?'/>
                     </div>
                 </Row>
                 <div className={styles.content}>
