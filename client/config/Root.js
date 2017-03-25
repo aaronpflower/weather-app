@@ -9,7 +9,7 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 
 let store = configureStore()
 
-store.dispatch(fetchCurrentUser())
+// store.dispatch(fetchCurrentUser())
 
 function loggedIn() { 
     let state = store.getState();

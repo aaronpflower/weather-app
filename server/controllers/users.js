@@ -1,35 +1,44 @@
 // followed this example:
-// http://mherman.org/blog/2016/09/25/node-passport-and-postgres/#.WNP_pxIrKV4
+// http://mherman.org/blog/2016/10/28/token-based-authentication-with-node/#.WNbnRRIrKV4
 
 const authHelpers = require('../auth/_helpers');
-const passport = require('../auth/local');
-
-function handleResponse(res, code, statusMsg) {
-    res.status(code).json({status: statusMsg});
-}
 
 module.exports = {
-    add: (req, res, next) => {
-        authHelpers.createUser(req, res)
-        .then((response) => {
-            passport.authenticate('local', (err, user, info) => {
-                if(user) { handleResponse(res, 200, 'success');  }
-            })(req, res, next);
+    add: (req, res, next)  => {
+        return authHelpers.createUser(req)
+        .then((user) => { return localAuth.encodeToken(user[0]); })
+        .then((token) => {
+            res.status(200).json({
+                status: 'success',
+                token: token
+            });
         })
-        .catch((err) => { handleResponse(res, 500, 'error'); });
+        .catch((err) => {
+            res.status(500).json({
+                status: 'error'
+            });
+        });
     },
 
     login: (req, res, next) => {
-        passport.authenticate('local', (err, user, info) => {
-            if (err) { handleResponse(res, 500, 'error'); }
-            if (!user) { handleResponse(res, 404, 'User not found'); }
-            if (user) {
-                req.logIn(user, function (err) {
-                    if (err) { handleResponse(res, 500, 'error'); }
-                    res.send(user.username)
-                    // handleResponse(res, 200, 'success');
+        const username = req.body.username;
+        const password = req.body.password;
+        return authHelpers.getUser(username)
+            .then((response) => {
+                authHelpers.comparePass(password, response.password);
+                return response;
+            })
+            .then((response) => { return localAuth.encodeToken(response); })
+            .then((token) => {
+                res.status(200).json({
+                    status: 'success',
+                    token: token
                 });
-            }
-        })(req, res, next);
+            })
+            .catch((err) => {
+                res.status(500).json({
+                    status: 'error'
+                });
+            });
     }
 }

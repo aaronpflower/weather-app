@@ -31,7 +31,7 @@ class ConditionsContainer extends Component{
     }
 
     handleLocationClick(e, id) {
-        this.props.state.currentWeather.conditions.filter(item => {
+        this.props.state.users.conditions.filter(item => {
             if (item.id === id) {
                 return this.setState({
                     LocationDetails: item.data,
@@ -57,7 +57,7 @@ class ConditionsContainer extends Component{
             <Row className={classnames(styles.container)}>
                 <Col xs={12} md={3} className={classnames(styles.stream)}>
                     <LocationsStream
-                        locations={this.props.state.currentWeather.conditions}
+                        locations={this.props.state.users.conditions}
                         onLocationClick={this.handleLocationClick} 
                     />
                 </Col>

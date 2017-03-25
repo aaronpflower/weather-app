@@ -51,7 +51,9 @@ class Main extends Component {
                     onUpdateLocation={this.handleUpdateLocation}
                     showSearchInput={this.state.showSearchInput}
                 />
-                {this.props.children}
+                <div className={styles.wrapper}>
+                    {this.props.children}
+                </div>
             </div>
         )
     }

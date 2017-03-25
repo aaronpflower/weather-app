@@ -46,8 +46,9 @@ class HomeContainer extends Component{
     }
 
     render() {
+        console.log(this)
         let content;
-        if (this.props.state.toggleUserForms.showSignup) {
+        if (this.props.state.users.showSignup) {
             content = <Signup
                 onEmailUpdate={this.handleUpdateEmail}
                 onPasswordUpdate={this.handleUpdatePassword}
@@ -55,7 +56,7 @@ class HomeContainer extends Component{
                 password={this.state.password}
                 onSignup={this.handleSignup}
             />
-        } else if (this.props.state.toggleUserForms.showLogin) {
+        } else if (this.props.state.users.showLogin) {
             content = <Login
                 onEmailUpdate={this.handleUpdateEmail}
                 onPasswordUpdate={this.handleUpdatePassword}

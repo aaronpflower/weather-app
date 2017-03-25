@@ -4,7 +4,6 @@ const bodyParser = require("body-parser")
 const path = require('path')
 const express = require('express')
 const app = express()
-const passport = require('passport');
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 
@@ -21,8 +20,6 @@ app.use(session({
 	saveUninitialized: true
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

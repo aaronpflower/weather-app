@@ -47,8 +47,13 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"
-            },
+                test: /.js$/,
+                loaders: 'buble-loader',
+                include: path.join(__dirname, 'client'),
+                query: {
+                    objectAssign: 'Object.assign',
+                },
+            }, 
             { 
                 test: /\.json$/, loader: 'json-loader'
             },
