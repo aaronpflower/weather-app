@@ -7,7 +7,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import classnames from 'classnames'
 
 import LocationDetails from '../components/LocationDetails'
-import Header from '../components/Header'
+
 import LocationsStream from '../components/LocationsStream'
 
 class ConditionsContainer extends Component{
@@ -55,22 +55,17 @@ class ConditionsContainer extends Component{
     render() {
         return (
             <Row className={classnames(styles.container)}>
-                <Col xs={12} md={9} className={classnames(styles.top)}>
-                    <Header 
-                        searchLocation={this.handleLocationSearch}
-                        location={this.state.location}
-                        onUpdateLocation={this.handleUpdateLocation}
-                        />
+                <Col xs={12} md={3} className={classnames(styles.stream)}>
+                    <LocationsStream
+                        locations={this.props.state.currentWeather.conditions}
+                        onLocationClick={this.handleLocationClick} 
+                    />
+                </Col>
+                <Col xs={12} md={9} className={classnames(styles.conditions)}>
                     <LocationDetails 
                         visible={this.state.isVisible}
                         conditions={this.state.LocationDetails}
                         close={this.handleLocationClose}
-                    />
-                </Col>
-                <Col xs={12} md={3} className={classnames(styles.bottom)}>
-                    <LocationsStream
-                        locations={this.props.state.currentWeather.conditions}
-                        onLocationClick={this.handleLocationClick} 
                     />
                 </Col>
             </Row>

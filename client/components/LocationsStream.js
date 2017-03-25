@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react'
 import Location from './Location'
 import styles from './LocationsStream.less'
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import fonts from '../base/fonts.less'
 
 const LocationsStream = ({ locations , onLocationClick}) => (
-  <div className={styles.container}>
-    <h1 className={fonts.largeText}>Your Locations</h1>
-    <ul className={styles.list}>
+    <Row className={styles.list}>
+      <Col xs={12}>
+        <h1 className={fonts.smallText}>Your Locations</h1>
+      </Col>
       {locations.map(location =>
         <Location
           key={location.id}
@@ -14,8 +16,7 @@ const LocationsStream = ({ locations , onLocationClick}) => (
           onClick={(e) => onLocationClick(e, location.id)}
         />
       )}
-    </ul>
-  </div>
+    </Row>
 )
 
 LocationsStream.propTypes = {

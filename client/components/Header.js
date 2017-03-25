@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import styles from './header.less'
 import Button from '../components/Button'
-// import { Grid, Row, Col } from 'react-flexbox-grid';
 import classnames from 'classnames'
+import fonts from '../base/fonts.less'
 
-// http://codepen.io/chriscoyier/pen/FAbpm
-const Header = (props) => (
-    <div className={styles.container}>
-        <div className={styles.item}>
+const Header = function(props) {
+    let searchInput
+    if (props.showSearchInput) {
+        searchInput = <div className={styles.item}>
             <input
                 className={styles.input}
                 placeholder="Enter Location"
@@ -21,24 +21,29 @@ const Header = (props) => (
                 <i className={classnames("fa fa-search", styles.searchIcon)} aria-hidden="true"></i>
             </Button>
         </div>
-        <div className={classnames(styles.item, styles.hammy)}>
-            <i className={classnames("fa fa-bars")}></i>
+    } else {
+        searchInput = null;
+    }
+    return (
+        <div className={styles.container}>
+            <i className="fa fa-cloud" aria-hidden="true"></i>
+            <h1 className={classnames(styles.item, fonts.largeText)}>Weather App</h1>
+            {searchInput}
+            <div className={classnames(styles.item, styles.menu)}>
+                <Button onClick={props.showSignup} type='Button' innerText='Signup'/>
+                <Button onClick={props.showLogin} type='button' innerText='Already have an account?'/>
+            </div>
         </div>
-        <div className={classnames(styles.menu)}>
-            <Link to='/signup'>
-                <Button type='button' innerText='Signup' />
-            </Link>
-            <Link to='/login'>
-                <Button type='button' innerText='Login' />
-            </Link>
-        </div>
-    </div>
-)
+    )
+}
 
 Header.propTypes = {
     searchLocation: PropTypes.func.isRequired,
     location: PropTypes.string.isRequired,
-    onUpdateLocation: PropTypes.func.isRequired
+    onUpdateLocation: PropTypes.func.isRequired,
+    showSearchInput: PropTypes.bool.isRequired,
+    showLogin: PropTypes.func.isRequired,
+    showSignup: PropTypes.func.isRequired
 }
 
 export default Header

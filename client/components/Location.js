@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react'
 import styles from './Location.less'
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 const Location = ({ onClick, text }) => (
-  <li className={styles.container}
+  <Col xs={12} className={styles.container}
     onClick={onClick}
   >
     {text}
-  </li>
+    <i className="fa fa-times" aria-hidden="true"></i>
+  </Col>
 )
 
 Location.propTypes = {

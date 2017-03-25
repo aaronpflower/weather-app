@@ -5,10 +5,8 @@ import Button from './Button'
 import Input from './Input'
 import styles from './Signup.less'
 
-const Login = (props) => {
-    return props.showLogin === false
-    ? null
-    : <div className={styles.container}>
+const Login = (props) => (
+    <div className={styles.container}>
         <Input
             type="email"
             placeholder="Please Enter Email"
@@ -27,10 +25,9 @@ const Login = (props) => {
             innerText='Login'
         />
     </div>
-}
+)
 
 Login.propTypes = {
-    showLogin: PropTypes.bool.isRequired,
     onEmailUpdate: PropTypes.func.isRequired,
     onPasswordUpdate: PropTypes.func.isRequired,
     email: PropTypes.string.isRequired,

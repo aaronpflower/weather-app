@@ -7,7 +7,7 @@ import styles from './LocationDetails.less'
 const LocationDetails = (props) => {
     return props.visible === false
         ? <p> No location selected </p>
-        : <Row className={classnames(props.visible && styles.visible, styles.container)}>
+        : <Row className={classnames(props.visible, styles.container)}>
             <Col xs={12}>
                 <i className={classnames("fa fa-times", styles.close)} aria-hidden="true" onClick={props.close}></i>
             </Col>

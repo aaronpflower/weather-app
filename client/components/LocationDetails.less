@@ -1,23 +1,9 @@
 @import '../base/variables.less';
 
 .container {
-    position: fixed;
-    z-index: -1;
-    opacity: 0;
-    @media @screen-md {
-        position: relative;
-        border: 1px solid @darkBlue;
-        margin-top: .5em;
-        overflow-y: scroll;
-        height: 100%;
-    }
+    position: relative;
 }
 
-.visible {
-    opacity: 1;
-    z-index: 1;
-    background: #fff;
-}
 
 .close {
     position: absolute;

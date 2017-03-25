@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-const { GET_CURRENT_WEATHER, SIGN_UP, LOGIN } = require('../actions/constants')
+const { GET_CURRENT_WEATHER, SIGN_UP, LOGIN, TOGGLE_USER_FORMS, FETCH_CURRENT_USER } = require('../actions/constants')
 
 let conditionsId = 0
 
@@ -39,10 +39,35 @@ function login(state = { user: null }, action) {
     }
 }
 
+function toggleUserForms(state = { showLogin: false, showSignup: false }, action) {
+    switch (action.type) {
+        case TOGGLE_USER_FORMS:
+            return Object.assign({}, state, {
+                showLogin: action.payload.showLogin,
+                showSignup: action.payload.showSignup
+            })
+        default:
+            return state
+    }
+}
+
+function fetchCurrentUser(state = {user: null}, action) {
+    switch (action.type) {
+        case FETCH_CURRENT_USER:
+            return Object.assign({}, state, {
+                user: action.payload
+            })
+        default:
+            return state
+    }
+}
+
 const rootReducer = combineReducers({
     currentWeather,
     signUp,
-    login
+    login,
+    toggleUserForms,
+    fetchCurrentUser
 })
 
 export default rootReducer
