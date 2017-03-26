@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { GET_CURRENT_WEATHER, LOGIN, SIGN_UP, TOGGLE_USER_FORMS, FETCH_CURRENT_USER } = require('./constants')
+const { LOGIN, SIGN_UP, TOGGLE_USER_FORMS, FETCH_CURRENT_USER } = require('./constants')
 
 // TODO: Refactor action/reducers
 const actions = {
@@ -7,15 +7,6 @@ const actions = {
         const action = { type: FETCH_CURRENT_USER }
         return dispatch => {
             return axios.get('/api/users/current')
-                .then(res => dispatch(Object.assign({}, action, { payload: res })))
-                .catch(error => console.log(error))
-        }
-    },
-
-    getCurrentWeather(data) {
-        const action = { type: GET_CURRENT_WEATHER }
-        return dispatch => {
-            return axios.post('/api/weather', { data: data })
                 .then(res => dispatch(Object.assign({}, action, { payload: res })))
                 .catch(error => console.log(error))
         }
