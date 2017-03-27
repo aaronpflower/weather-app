@@ -1,5 +1,5 @@
 const { SIGN_UP, LOGIN, TOGGLE_USER_FORMS, FETCH_CURRENT_USER } = require('../actions/constants')
-const createReducer = require('./createReducer')
+const createReducer = require('./createReducer')    
 
 const initialState = {
     currentUser: null,
@@ -10,14 +10,17 @@ const initialState = {
 
 module.exports = createReducer(initialState, {
     [SIGN_UP]: (state, action) => {
+        window.location.hash = 'conditions'
         return Object.assign({}, state, {
             currentUser: action.payload.data
         })
     },
 
     [LOGIN]: (state, action) => {
+        localStorage.setItem('token', action.payload.data.token);
+        window.location.hash = 'conditions'
         return Object.assign({}, state, {
-            currentUser: action.payload.data
+            currentUser: action.payload.data,
         })
     },
 
@@ -26,12 +29,12 @@ module.exports = createReducer(initialState, {
             showLogin: action.payload.showLogin,
             showSignup: action.payload.showSignup
         })
-    },
-
-    [FETCH_CURRENT_USER]: (state, action) => {
-        return Object.assign({}, state, {
-            currentUser: action.payload
-        })
     }
+
+    // [FETCH_CURRENT_USER]: (state, action) => {
+    //     return Object.assign({}, state, {
+    //         currentUser: action.payload
+    //     })
+    // }
 
 })

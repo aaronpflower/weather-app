@@ -12,8 +12,8 @@ let store = configureStore()
 // store.dispatch(fetchCurrentUser())
 
 function loggedIn() { 
-    let state = store.getState();
-    return state.login.user === null
+    let token = localStorage.getItem('token')
+    return token === null; 
 }
 
 function requireAuth(nextState, replaceState) {
@@ -29,7 +29,7 @@ export default class Root extends Component {
                 <Router history={hashHistory}>
                     <Route path='/' component={Main}>
                         <IndexRoute component={HomeContainer} />
-                        <Route path='conditions' component={ConditionsContainer}/>
+                        <Route path='conditions' onEnter={requireAuth} component={ConditionsContainer}/>
                     </Route>
                 </Router>
             </Provider>

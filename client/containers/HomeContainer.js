@@ -46,7 +46,6 @@ class HomeContainer extends Component{
     }
 
     render() {
-        console.log(this)
         let content;
         if (this.props.state.users.showSignup) {
             content = <Signup

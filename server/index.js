@@ -5,7 +5,7 @@ const path = require('path')
 const express = require('express')
 const app = express()
 const cookieParser = require('cookie-parser')
-const session = require('express-session')
+// const session = require('express-session')
 
 const helmet = require('helmet')
 const root = path.join(__dirname, 'dist')
@@ -14,11 +14,11 @@ const env = process.env.NODE_ENV || 'development'
 
 app.use(cookieParser());
 
-app.use(session({
-	secret: process.env.SECRET_KEY,
-	resave: false,
-	saveUninitialized: true
-}));
+// app.use(session({
+// 	secret: process.env.SECRET_KEY,
+// 	resave: false,
+// 	saveUninitialized: true
+// }));
 
 
 app.use(bodyParser.json());

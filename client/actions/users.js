@@ -3,14 +3,14 @@ const { LOGIN, SIGN_UP, TOGGLE_USER_FORMS, FETCH_CURRENT_USER } = require('./con
 
 // TODO: Refactor action/reducers
 const actions = {
-    fetchCurrentUser(data) {
-        const action = { type: FETCH_CURRENT_USER }
-        return dispatch => {
-            return axios.get('/api/users/current')
-                .then(res => dispatch(Object.assign({}, action, { payload: res })))
-                .catch(error => console.log(error))
-        }
-    },
+    // fetchCurrentUser(data) {
+    //     const action = { type: FETCH_CURRENT_USER }
+    //     return dispatch => {
+    //         return axios.get('api/users/current')
+    //             .then(res => dispatch(Object.assign({}, action, { payload: res })))
+    //             .catch(error => console.log(error))
+    //     }
+    // },
 
     signUp(email, pass) {
         const action = { type: SIGN_UP }
