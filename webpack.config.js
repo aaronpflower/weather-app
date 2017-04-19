@@ -20,7 +20,8 @@ module.exports = {
     entry: './client/index.js',
     output: {
         path: __dirname + '/dist',
-        filename: 'index_bundle.js'
+        filename: 'index_bundle.js',
+        publicPath: '/'
     },
 
     devtool: 'cheap-module-source-map',
