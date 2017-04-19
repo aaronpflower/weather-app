@@ -1,0 +1,9 @@
+- Landing page
+- Create account
+- add favorite city
+- have menu of favorite cities
+- get all information for those favorite cites
+- use yarn, postgress, express, react, redux, webpack, and forcast.io
+
+
+step one input that takes zip and displays current weather
