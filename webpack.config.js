@@ -107,11 +107,5 @@ module.exports = {
 			'node_modules',
 			path.resolve(__dirname, 'client'),
 		],
-	},
-    node: {
-        console: true,
-        fs: 'empty',
-        net: 'empty',
-        tls: 'empty'
-    }
+	}
  };
