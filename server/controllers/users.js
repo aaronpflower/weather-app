@@ -1,6 +1,9 @@
 // followed this example:
 // http://mherman.org/blog/2016/10/28/token-based-authentication-with-node/#.WNbnRRIrKV4
 
+// References 
+// https://auth0.com/blog/cookies-vs-tokens-definitive-guide/
+
 const authHelpers = require('../auth/_helpers');
 const localAuth = require('../auth/local');
 

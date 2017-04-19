@@ -36,3 +36,6 @@ app.listen(port, () => {
 		console.info('Server running on port '+port)
 	}
 })
+
+
+module.exports = app

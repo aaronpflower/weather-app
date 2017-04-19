@@ -1,7 +1,9 @@
 const axios = require('axios')
 const { LOGIN, SIGN_UP, TOGGLE_USER_FORMS, FETCH_CURRENT_USER } = require('./constants')
 
-// TODO: Refactor action/reducers
+// TODO: Add common http action
+// TODO: sanitized data and form validation, find framework for both
+
 const actions = {
     // fetchCurrentUser(data) {
     //     const action = { type: FETCH_CURRENT_USER }
