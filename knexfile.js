@@ -1,7 +1,9 @@
+const databaseName = 'weatherapp';
+
 module.exports = {
     development: {
         client: 'postgresql',
-        connection: process.env.DATABASE_URL,
+        connection: `postgres://localhost:5432/${databaseName}`,
         migrations: {
             directory: __dirname + '/server/db/migrations'
         },
@@ -11,7 +13,7 @@ module.exports = {
     },
     test: {
         client: 'postgresql',
-        connection: process.env.DATABASE_URL_TEST,
+        connection: `postgres://localhost:5432/${databaseName}_test`,
         migrations: {
             directory: __dirname + '/server/db/migrations'
         },
