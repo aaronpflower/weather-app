@@ -14,14 +14,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.raw());
 app.use(bodyParser.text());
 
-app.use(express.static(path.join('../dist')));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.get('/', function(request, response) {
-	response.sendFile('../dist/index.html');
+	response.sendFile(__dirname + '/dist/index.html');
 });
 
 app.use(helmet())
 
-require('./routes/routes')(app)
+require('./server/routes/routes')(app)
 
 app.listen(port, () => {
 	if(env === 'development'){
