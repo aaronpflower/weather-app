@@ -65,7 +65,7 @@ class HomeContainer extends Component{
             />
         } else {
             content = <div className={styles.intro}>
-                <h1 className={fonts.largeText}>Welcome to the Weather App</h1>
+                <h1 className={fonts.largeText}>Welcome to the Weather</h1>
                 <p className={fonts.mediumText}>Create an account and access current weather and forcasts from around the world</p>
             </div>
         }
