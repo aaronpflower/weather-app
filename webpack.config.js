@@ -39,7 +39,7 @@ module.exports = {
                 target: "http://localhost:3000"
             }
         },
-        contentBase: path.join(__dirname, "dist"),
+        contentBase: './dist',
         compress: true,
         port: 3001,
         historyApiFallback: true
