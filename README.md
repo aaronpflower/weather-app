@@ -1,3 +1,5 @@
+[ ![Codeship Status for aaronpflower/weather-app](https://app.codeship.com/projects/a01b0ee0-92c8-0132-6084-66933f4492d6/status?branch=master)](https://app.codeship.com/projects/62002)
+
 # Weather App React
 >Goal, create an application using Node, PostgreSQL, React/Redux, webpack, and forecast.io for a user to save favorite locations and browser current weather and weater history
 
