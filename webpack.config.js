@@ -19,10 +19,10 @@ const extractLess = new ExtractTextPlugin({
 module.exports = {
     entry: './client/index.js',
     output: {
-        path: __dirname + '/dist',
-        filename: 'index_bundle.js',
-        publicPath: '/'
-    },
+		path: path.resolve(__dirname, 'dist'),
+		filename: '[name]-[hash].js',
+		publicPath: '/',
+	},
 
     devtool: 'cheap-module-source-map',
     stats: 'minimal',

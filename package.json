@@ -62,5 +62,6 @@
   },
   "devDependencies": {
     "ava": "^0.18.1"
-  }
+  },
+  "repository": "https://github.com/aaronpflower/weather-app.git"
 }
