@@ -15,7 +15,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.raw());
 app.use(bodyParser.text());
 
-app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
+if (process.env.NODE_ENV !== 'test') {
+	app.use(morgan('dev'));
+}
 
 app.use(express.static(path.join(__dirname, 'dist')));
 app.get('/', function(request, response) {

@@ -22,6 +22,7 @@ function requireAuth(nextState, replaceState) {
     }
 }
 
+// On route changes how do you add skeleton screens like for linkedin?
 export default class Root extends Component {
     render() {
         return (
