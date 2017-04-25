@@ -49,9 +49,7 @@ module.exports = {
     },
 
     currentUser: (req, res, next) => {
-        // http://mherman.org/blog/2017/01/05/token-based-authentication-with-angular/#.WNchJxIrJTY
         if (!(req.headers && req.headers.authorization)) {
-            console.log('here')
             return res.status(400).json({
                 status: 'Please log in'
             });
@@ -71,7 +69,7 @@ module.exports = {
                 })
                 .catch((err) => {
                     res.status(500).json({
-                    status: 'error'
+                        status: 'error'
                     });
                 });
             }

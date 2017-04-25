@@ -25,7 +25,7 @@ describe('auth : local', () => {
 			token.should.be.a('string');
 			localAuth.decodeToken(token, (err, res) => {
 				should.not.exist(err);
-				res.sub.should.eql(1);
+				res.data.should.eql(1);
 				done();
 			});
 		});

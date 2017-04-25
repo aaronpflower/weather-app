@@ -7,6 +7,7 @@ const app = express()
 
 const morgan = require('morgan');
 const helmet = require('helmet')
+const errorConfig = require('./server/config/error-config.js');
 const port = process.env.PORT || 3000
 const env = process.env.NODE_ENV || 'development'
 
@@ -20,16 +21,17 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 app.use(express.static(path.join(__dirname, 'dist')));
-app.get('/', function(request, response) {
-	response.sendFile(__dirname + '/dist/index.html');
-});
 
 app.use(helmet())
 
 require('./server/routes/routes')(app)
+
+errorConfig.init(app);
 
 app.listen(port, () => {
 	if(env === 'development'){
 		console.info('Server running on port '+port)
 	}
 })
+
+module.exports = app;
