@@ -14,8 +14,12 @@ https://weather-application-react.herokuapp.com/
 6. api routes are at localhost:3000/api/routename
 7. start postgres
 
+### Tests
+1. `npm test`
+
 ### Production/Deployment to Heroku
 
 1. `npm start`
 3. commit changes
-2. `git push heroku master`
+2. `git push`
+4. `heroku run knex migrate:latest`
