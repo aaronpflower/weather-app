@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { LOGIN, SIGN_UP, TOGGLE_USER_FORMS, FETCH_CURRENT_USER } = require('./constants')
+const { LOGIN, SIGN_UP, FETCH_CURRENT_USER } = require('./constants')
 
 // TODO: Add common http action
 // TODO: sanitized data and form validation, find framework for both
