@@ -4,57 +4,28 @@ import { getCurrentWeather, toggleUserForms } from '../actions/actions'
 import { connect } from 'react-redux'
 import Header from '../components/Header'
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import fonts from '../base/fonts.less'
 
 class Main extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            location: '',
-            isVisible: false,
-            LocationDetails: {},
-            showSearchInput: true
-        }
-        this.handleUpdateLocation = this.handleUpdateLocation.bind(this)
-        this.handleLocationSearch = this.handleLocationSearch.bind(this)
-        this.showLogin = this.showLogin.bind(this)
-        this.showSignup = this.showSignup.bind(this)
     }
-
-    handleUpdateLocation(e) {
-        this.setState({
-            location: e.target.value
-        })
-    }
-
-    handleLocationSearch() {
-        this.props.dispatch(getCurrentWeather(this.state.location))
-    }
-
-    showLogin() {
-         this.props.dispatch(toggleUserForms("login"))
-    }
-
-    showSignup() {
-         this.props.dispatch(toggleUserForms("signup"))
-    }
-
 
     render() {
-        
         return (
-            <div className={styles.container}>
-                <Header
-                    showSignup={this.showSignup}
-                    showLogin={this.showLogin}
-                    searchLocation={this.handleLocationSearch}
-                    location={this.state.location}
-                    onUpdateLocation={this.handleUpdateLocation}
-                    showSearchInput={this.state.showSearchInput}
-                />
-                <div className={styles.wrapper}>
+            <Row className={styles.container}>
+                <Col xs={12}>
+                    <Header/>
+                </Col>
+                <Col xs={12} className={styles.wrapper}>
                     {this.props.children}
-                </div>
-            </div>
+                </Col>
+                <Col xs={12}>
+                    <footer className={styles.footer}>
+                        <span className={fonts.smallText}>Copyright © 2017 Mr. Flower Dev</span>
+                    </footer>
+                </Col>
+            </Row>
         )
     }
 }

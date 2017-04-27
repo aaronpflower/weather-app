@@ -1,9 +1,29 @@
-- Landing page
-- Create account
-- add favorite city
-- have menu of favorite cities
-- get all information for those favorite cites
-- use yarn, postgress, express, react, redux, webpack, and forcast.io
+- Improve build system
+    1) Remove /dist from git
+    2) Add docker
+    3) Add linting
+    4) Combine npm dev to watch run npm test together
+- Write tests for weather routes
+- Write tests for existing react components
+- Add relationship between user and cities
+- Make a consistent UI and better design
+    1) Add common loader and transition 
+    2) Clean up map state to props and make a cleaner differece between componenet state and Redux state
+- Migrate to React Router 4
+- Add CSS autoprefixer
+- Sendgrid varify email after signup
 
 
-step one input that takes zip and displays current weather
+
+User Not logged in
+1) By default home page has search bar front and center
+2) The user can login
+3) The user can signup
+4) User can fill out search bar and be taken to conditions page
+5) On conditions page they can manage the stream, delete items, and add more
+
+User Logged in
+1) Taken by default to user page
+2) A user can log out
+3) A user can delete account
+4) A user can edit an account

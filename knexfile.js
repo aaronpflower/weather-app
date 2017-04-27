@@ -23,19 +23,19 @@ module.exports = {
             directory: __dirname + '/server/db/seeds'
         }
     },
-
-	staging: {
-		client: 'postgresql',
-		connection: process.env.DATABASE_URL,
-		pool: {
-			min: 2,
-			max: 10
-		},
-		migrations: {
-			tableName: 'knex_migrations'
-		},
-		ssl: true
-	},
+	// TODO: Setup staging one day if needed
+	// staging: {
+	// 	client: 'postgresql',
+	// 	connection: process.env.DATABASE_URL,
+	// 	pool: {
+	// 		min: 2,
+	// 		max: 10
+	// 	},
+	// 	migrations: {
+	// 		tableName: 'knex_migrations'
+	// 	},
+	// 	ssl: true
+	// },
 
 	production: {
 		client: 'postgresql',
@@ -54,7 +54,7 @@ module.exports = {
 	}
 
 };
-
+ 
 // connection: {
 		// 	database: 'my_db',
 		// 	user:     'username',

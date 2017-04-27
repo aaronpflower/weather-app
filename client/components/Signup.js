@@ -5,34 +5,63 @@ import Button from './Button'
 import Input from './Input'
 import styles from './Signup.less'
 
-const Signup = (props) => (
-   <div className={styles.container}>
-        <Input
-            type="email"
-            placeholder="Please Enter Email"
-            onChange={props.onEmailUpdate}
-            value={props.email}
-        />
-        <Input
-            type="password"
-            placeholder="Please Enter Password"
-            onChange={props.onPasswordUpdate}
-            value={props.password}
-        />
-        <Button 
-            onClick={props.onSignup}
-            type='button'
-            innerText='Create My Account'
-        />
-    </div>
-)
+class Signup extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: '',
+            password: ''
+        }
+        this.handleUpdateEmail = this.handleUpdateEmail.bind(this)
+        this.handleUpdatePassword = this.handleUpdatePassword.bind(this)
+        this.handleSignup = this.handleSignup.bind(this)
+    }
 
-Signup.propTypes = {
-    onEmailUpdate: PropTypes.func.isRequired,
-    onPasswordUpdate: PropTypes.func.isRequired,
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    onSignup: PropTypes.func.isRequired
+    handleUpdatePassword(e) {
+        this.setState({
+            password: e.target.value
+        })
+    }
+
+    handleUpdateEmail(e) {
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    handleSignup() {
+        this.props.dispatch(signUp(this.state.email, this.state.password))
+    }
+
+    render() {
+        return (
+            <div className={styles.container}>
+                <Input
+                    type="email"
+                    placeholder="Please Enter Email"
+                    onChange={this.handleUpdateEmail}
+                    value={this.state.email}
+                />
+                <Input
+                    type="password"
+                    placeholder="Please Enter Password"
+                    onChange={this.handleUpdatePassword}
+                    value={this.state.password}
+                />
+                <Button 
+                    onClick={this.handleSignup}
+                    type='button'
+                    innerText='Create My Account'
+                />
+            </div>
+        )
+    }
 }
 
-export default Signup
+const mapStateToProps = (state) => {
+  return {
+       state: state
+  };
+}
+
+export default connect(mapStateToProps)(Signup)
