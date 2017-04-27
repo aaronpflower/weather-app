@@ -10,24 +10,20 @@ import LocationDetails from '../components/LocationDetails'
 
 import LocationsStream from '../components/LocationsStream'
 
+import LocationSearch from '../components/LocationSearch'
+
 class ConditionsContainer extends Component{
     constructor(props) {
         super(props)
         this.state = {
             location: '',
-            isVisible: false,
-            LocationDetails: {}
+            showLocationDetails: false,
+            LocationDetails: {},
+            showLocationSearch: false
         }
-        this.handleUpdateLocation = this.handleUpdateLocation.bind(this)
-        this.handleLocationSearch = this.handleLocationSearch.bind(this)
         this.handleLocationClick = this.handleLocationClick.bind(this)
         this.handleLocationClose = this.handleLocationClose.bind(this)
-    }
-
-    handleUpdateLocation(e) {
-        this.setState({
-            location: e.target.value
-        })
+        this.handleAddLocation = this.handleAddLocation.bind(this)
     }
 
     handleLocationClick(e, id) {
@@ -35,7 +31,7 @@ class ConditionsContainer extends Component{
             if (item.id === id) {
                 return this.setState({
                     LocationDetails: item.data,
-                    isVisible: true
+                    showLocationDetails: true
                 })
             }
         })
@@ -44,26 +40,44 @@ class ConditionsContainer extends Component{
     handleLocationClose(id) {
         return this.setState({
             LocationDetails: {},
-            isVisible: false
+            showLocationDetails: false
         })
     }
 
-    handleLocationSearch() {
-        this.props.dispatch(getCurrentWeather(this.state.location))
+    handleAddLocation() {
+        if (this.state.showLocationSearch === false) {
+            this.setState({
+                showLocationSearch: true
+            })
+        } else {
+            this.setState({
+                showLocationSearch: false
+            })
+        }
     }
 
     render() {
+        let search
+        if (this.state.showLocationSearch) {
+            search = <LocationSearch/>;
+        } else {
+            search = null;
+        }
         return (
             <Row className={classnames(styles.container)}>
+                <Col xs={12}>
+                    {search}
+                </Col>
                 <Col xs={12} md={3} className={classnames(styles.stream)}>
                     <LocationsStream
                         locations={this.props.state.weather.conditions}
-                        onLocationClick={this.handleLocationClick} 
+                        onLocationClick={this.handleLocationClick}
+                        onAddLocation={this.handleAddLocation}
                     />
                 </Col>
                 <Col xs={12} md={9} className={classnames(styles.conditions)}>
                     <LocationDetails 
-                        visible={this.state.isVisible}
+                        visible={this.state.showLocationDetails}
                         conditions={this.state.LocationDetails}
                         close={this.handleLocationClose}
                     />

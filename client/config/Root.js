@@ -25,7 +25,6 @@ function requireAuth(nextState, replaceState) {
     }
 }
 
-// On route changes how do you add skeleton screens like for linkedin?
 export default class Root extends Component {
     render() {
         return (
@@ -33,7 +32,7 @@ export default class Root extends Component {
                 <Router history={hashHistory}>
                     <Route path='/' component={Main}>
                         <IndexRoute component={HomeContainer} />
-                        <Route path='conditions' onEnter={requireAuth} component={ConditionsContainer}/>
+                        <Route path='conditions' component={ConditionsContainer}/>
                         <Route path='signup' component={Signup}/>
                         <Route path='login' component={Login} />
                         <Route path='location-search' component={LocationSearch}/>
