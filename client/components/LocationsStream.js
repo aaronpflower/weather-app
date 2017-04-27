@@ -16,7 +16,7 @@ const LocationsStream = ({ locations , onLocationClick, onAddLocation}) => (
       {locations.map(location =>
         <Location
           key={location.id}
-          text={location.data.location}
+          text={location.conditions.location}
           onClick={(e) => onLocationClick(e, location.id)}
         />
       )}

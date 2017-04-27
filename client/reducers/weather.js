@@ -3,8 +3,8 @@ const createReducer = require('./createReducer')
 const { hashHistory } = require('react-router')
 
 const initialState = {
-    conditionsId: 0,
-    conditions: []
+    locationId: 0,
+    locations: []
 }
 
 module.exports = createReducer(initialState, {
@@ -12,8 +12,9 @@ module.exports = createReducer(initialState, {
         if (!action.pending && !action.error) {
             if (window.location.hash != '#/conditions') hashHistory.push('conditions');
             return Object.assign({}, ...state, {
-                conditions: [...state.conditions, { data: action.payload.data, id: initialState.conditionsId++}]
+                locations: [...state.locations, { conditions: action.payload.conditions, id: initialState.locationId++}]
             })
         }
+        return state
     }
 })

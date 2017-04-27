@@ -6,16 +6,22 @@ const actions = {
 
     getCurrentWeather(location) {
         const action = { type: GET_CURRENT_WEATHER }
+
         return dispatch => {
-            return axios.post('/api/weather', { location: location })
-                .then(res => dispatch(Object.assign({}, action, { payload: res })))
-                .catch(error => console.log(error))
+            dispatch(Object.assign({}, action, { pending: true }))
+            
+            return axios.post('/api/weather', {location: location})
+                .then(res => {
+                    dispatch(Object.assign({}, action, { payload: res.data }))
+                    return res
+                })
+                .catch(err => {
+                    dispatch(Object.assign({}, action, { error: true, payload: err }))
+                    throw err
+                })
         }
     }
 
 }
 
 module.exports = actions
-
-
-

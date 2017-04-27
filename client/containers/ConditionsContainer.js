@@ -25,10 +25,10 @@ class ConditionsContainer extends Component{
     }
 
     handleLocationClick(e, id) {
-        this.props.state.weather.conditions.filter(item => {
+        this.props.state.weather.locations.filter(item => {
             if (item.id === id) {
                 return this.setState({
-                    LocationDetails: item.data,
+                    LocationDetails: item.conditions,
                     showLocationDetails: true
                 })
             }
@@ -68,7 +68,7 @@ class ConditionsContainer extends Component{
                 </Col>
                 <Col xs={12} md={3} className={classnames(styles.stream)}>
                     <LocationsStream
-                        locations={this.props.state.weather.conditions}
+                        locations={this.props.state.weather.locations}
                         onLocationClick={this.handleLocationClick}
                         onAddLocation={this.handleAddLocation}
                     />
