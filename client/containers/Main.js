@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 const styles = require('./Main.less');
-import { getCurrentWeather, toggleUserForms } from '../actions/actions'
+import { getCurrentWeather } from '../actions/actions'
 import { connect } from 'react-redux'
 import Header from '../components/Header'
 import { Grid, Row, Col } from 'react-flexbox-grid';

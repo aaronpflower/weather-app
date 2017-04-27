@@ -8,6 +8,7 @@ const actions = {
         const action = { type: GET_CURRENT_WEATHER }
 
         return dispatch => {
+            
             dispatch(Object.assign({}, action, { pending: true }))
             
             return axios.post('/api/weather', {location: location})

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { getCurrentWeather, toggleUserForms } from '../actions/actions'
+import { getCurrentWeather } from '../actions/actions'
 import { connect } from 'react-redux'
 import Button from './Button'
 import Input from './Input'
