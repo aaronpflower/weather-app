@@ -1,21 +1,45 @@
-// TODO: Refactor and consider gecode and forecast.io
-// process.env.NODE_ENV = 'test';
+// TODO: Refactor, how to test request to geocode and if that fails?
 
-// const chai = require('chai');
-// const should = chai.should();
-// const chaiHttp = require('chai-http');
-// chai.use(chaiHttp);
+process.env.NODE_ENV = 'test';
 
-// const app = require('../../server')
+const chai = require('chai');
+const should = chai.should();
+const chaiHttp = require('chai-http');
+chai.use(chaiHttp);
 
-// describe('routes : weather', () => {
-//     describe('POST /api/weather', () => {
-//         it('should return current weather for location', (done) => {
-//             chai.request(app)
-//             .post('/api/weather')
-//             .send({
+const app = require('../../server')
 
-//             })
-//         })
-//     })
-// })
+describe('routes : weather', () => {
+    describe('POST /api/weather', () => {
+        it('should return current conditions for a valid location', (done) => {
+            chai.request(app)
+            .post('/api/weather')
+            .send({
+                location: 'Boulder CO'
+            })
+            .end((err, res) => {
+                should.not.exist(err)
+                res.redirects.length.should.equal(0);
+                res.status.should.equal(200);
+                res.type.should.equal('application/json');
+                res.body.should.include.keys('conditions', 'status')
+                res.body.status.should.equal('success')
+                done();
+            })
+        })
+        it('should not return current conditions for a invalid location', (done) => {
+            chai.request(app)
+            .post('/api/weather')
+            .send({
+                location: '$'
+            })
+            .end((err, res) => {
+                should.exist(err);
+                res.status.should.equal(500);
+                res.type.should.equal('application/json');
+                res.body.status.should.equal('error');
+                done();
+            })
+        })
+    })
+})

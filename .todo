@@ -12,7 +12,7 @@
 - Migrate to React Router 4
 - Add CSS autoprefixer
 - Sendgrid varify email after signup
-
+- Add better error handling for actions
 
 
 User Not logged in

@@ -7,9 +7,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import classnames from 'classnames'
 
 import LocationDetails from '../components/LocationDetails'
-
 import LocationsStream from '../components/LocationsStream'
-
 import LocationSearch from '../components/LocationSearch'
 
 class ConditionsContainer extends Component{

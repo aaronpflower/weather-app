@@ -1,12 +1,13 @@
 const NodeGeocoder = require('node-geocoder')
 const request = require('request-promise')
 
+// TODO: Returns location for jibberish inputs, add autocomplete
 module.exports = {
     getCurrentWeather: (req, res) => {
         let geocoder = NodeGeocoder({provider: 'google'});
-
-        geocoder.geocode(req.body.data)
-            .then(function(response) {
+        let location
+        return geocoder.geocode(req.body.location)
+            .then(response => {
                 var options = {
                     uri: 'https://api.darksky.net/forecast/' + process.env.FORECAST_SECRET + '/' + response[0].latitude + ',' + response[0].longitude,
                     headers: {
@@ -14,16 +15,19 @@ module.exports = {
                     },
                     json: true
                 };
-                request(options)
-                    .then(function(data) {
-                        res.send(Object.assign({}, data, {location: response[0].formattedAddress}))
-                    })
-                    .catch(function(e) {
-                        res.send(e)
-                    })			
+                location = response[0].formattedAddress
+                return request(options)
             })
-            .catch(function(err) {
-                console.log(err);
-        });
+            .then(conditons => {
+                res.status(200).json({
+                    status: 'success',
+                    conditions: Object.assign({}, conditons, {location: location})
+                })
+            })
+            .catch(err => {
+                res.status(500).json({
+                    status: 'error'
+                })
+            })
     }
 }
