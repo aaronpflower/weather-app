@@ -8,7 +8,7 @@
 - Add relationship between user and cities
 - Make a consistent UI and better design
     1) Add common loader and transition 
-    2) Clean up map state to props and make a cleaner differece between componenet state and Redux state
+    2) Clean up map state to props and make a cleaner differece between componenet state and Redux state, call redux state store
 - Migrate to React Router 4
 - Add CSS autoprefixer
 - Sendgrid varify email after signup

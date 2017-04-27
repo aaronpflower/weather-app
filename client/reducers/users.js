@@ -9,7 +9,6 @@ const initialState = {
 module.exports = createReducer(initialState, {
     [SIGN_UP]: (state, action) => {
         if (!action.pending && !action.error) {
-            window.location.hash = 'conditions'
             return Object.assign({}, state, {
                 currentUser: action.payload.data
             })
@@ -20,7 +19,6 @@ module.exports = createReducer(initialState, {
     [LOGIN]: (state, action) => {
         if (!action.pending && !action.error) {
             localStorage.setItem('token', action.payload.data.token);
-            window.location.hash = 'conditions'
             return Object.assign({}, state, {
                 currentUser: action.payload.data,
             })

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+const { hashHistory } = require('react-router')
 import { getCurrentWeather } from '../actions/actions'
 import { connect } from 'react-redux'
 import Button from './Button'
@@ -24,6 +25,13 @@ class LocationSearch extends Component {
 
     handleLocationSearch() {
         this.props.dispatch(getCurrentWeather(this.state.location))
+        .then(res => {
+            if (window.location.hash != '#/conditions') hashHistory.push('conditions');
+        })
+        .catch(err => {
+            // TODO: Do something with this error
+            console.log(err)
+        })
     }
 
     render() {

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+const { hashHistory } = require('react-router')
 import { login } from '../actions/actions'
 import { connect } from 'react-redux'
 import Button from './Button'
@@ -31,6 +32,13 @@ class Login extends Component{
 
     handleLogin() {
         this.props.dispatch(login(this.state.email, this.state.password))
+        .then(res => {
+            if (window.location.hash != '#/conditions') hashHistory.push('conditions');
+        })
+        .catch(err => {
+            // TODO: Do something with this error
+            console.log(err)
+        })
     }
 
     render() {
