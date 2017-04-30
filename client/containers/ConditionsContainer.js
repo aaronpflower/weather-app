@@ -66,14 +66,14 @@ class ConditionsContainer extends Component{
                 <Col xs={12}>
                     {search}
                 </Col>
-                <Col xs={12} md={3} className={classnames(styles.stream)}>
+                <Col xs={12} md={3} className={classnames(styles.content)}>
                     <LocationsStream
                         locations={this.props.state.weather.locations}
                         onLocationClick={this.handleLocationClick}
                         onAddLocation={this.handleAddLocation}
                     />
                 </Col>
-                <Col xs={12} md={9} className={classnames(styles.conditions)}>
+                <Col xs={12} md={7} className={classnames(styles.content)}>
                     <LocationDetails 
                         visible={this.state.showLocationDetails}
                         conditions={this.state.LocationDetails}

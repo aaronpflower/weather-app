@@ -18,9 +18,6 @@ const Header = function(props) {
             </Link>
 
             <div className={classnames(styles.item, styles.menu)}>
-                <Link to="/location-search">
-                    <Button type='Button' innerText='Search'/>
-                </Link>
                 <Link to="/signup">
                     <Button type='Button' innerText='Signup'/>
                 </Link>

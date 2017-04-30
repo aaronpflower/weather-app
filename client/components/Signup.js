@@ -5,6 +5,9 @@ import { connect } from 'react-redux'
 import Button from './Button'
 import Input from './Input'
 import styles from './Signup.less'
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import classnames from 'classnames';
+import fonts from '../base/fonts.less';
 
 class Signup extends Component {
     constructor(props) {
@@ -43,25 +46,29 @@ class Signup extends Component {
 
     render() {
         return (
-            <div className={styles.container}>
-                <Input
-                    type="email"
-                    placeholder="Please Enter Email"
-                    onChange={this.handleUpdateEmail}
-                    value={this.state.email}
-                />
-                <Input
-                    type="password"
-                    placeholder="Please Enter Password"
-                    onChange={this.handleUpdatePassword}
-                    value={this.state.password}
-                />
-                <Button 
-                    onClick={this.handleSignup}
-                    type='button'
-                    innerText='Create My Account'
-                />
-            </div>
+            <Row className={classnames(styles.container)}>
+                <Col xs={12} className={styles.content}>
+                    <h1 className={fonts.largeText}>Create an Account!</h1>
+                    <p className={fonts.smallText}>And save you favorite places!</p>
+                    <Input
+                        type="email"
+                        placeholder="Please Enter Email"
+                        onChange={this.handleUpdateEmail}
+                        value={this.state.email}
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Please Enter Password"
+                        onChange={this.handleUpdatePassword}
+                        value={this.state.password}
+                    />
+                    <Button 
+                        onClick={this.handleSignup}
+                        type='button'
+                        innerText='Create My Account'
+                    />
+                </Col>
+            </Row>
         )
     }
 }

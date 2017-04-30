@@ -3,7 +3,7 @@ import styles from './Location.less'
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
 const Location = ({ onClick, text }) => (
-  <Col xs={12} className={styles.container}
+  <Col xs={11} className={styles.container}
     onClick={onClick}
   >
     {text}

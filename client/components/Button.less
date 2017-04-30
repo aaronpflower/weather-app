@@ -1,29 +1,9 @@
 @import '../base/variables.less';
+
 // TODO: Rework css to be more reusable
 .btn {
 	background-color: transparent;
-    border: 1px solid @colorPrimary;
-    padding: .2em 1.5em;
-	color: @colorPrimary;
-    text-align: center;
-    cursor: pointer;
-    line-height: 1.15;
-    max-width: 100%;
-	transition: all .1s ease-in-out;
-    margin: 0em 1em;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .1));
-    &:hover {
-        box-shadow: inset @boxShadowNone @stroke @colorDarkTrans10, @boxShadowMd @colorDarkTrans20;
-    }
-    &:focus,
-    &:active {
-        box-shadow: inset @boxShadowNone @stroke @colorDarkTrans10, @boxShadowNone @colorDarkTrans10;
-    }
-}
-
-.btnDark {
-	background-color: @colorPrimary;
-    border: 1px solid @colorPrimary;
+    border: 1px solid @white;
     padding: .2em 1.5em;
 	color: @white;
     text-align: center;
@@ -32,15 +12,12 @@
     max-width: 100%;
 	transition: all .1s ease-in-out;
     margin: 0em 1em;
-    border-radius: 6px;
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .1));
-    transition: box-shadow .1s ease-in-out;
-    box-shadow: inset @boxShadowNone @stroke @colorDarkTrans10, @boxShadowSm @colorDarkTrans10;
     &:hover {
-        box-shadow: inset @boxShadowNone @stroke @colorDarkTrans10, @boxShadowMd @colorDarkTrans20;
+        box-shadow: inset @boxShadowNone @stroke @darkLessTransparent, @boxShadowMd @darkTransparent;
     }
     &:focus,
     &:active {
-        box-shadow: inset @boxShadowNone @stroke @colorDarkTrans10, @boxShadowNone @colorDarkTrans10;
+        box-shadow: inset @boxShadowNone @stroke @darkLessTransparent, @boxShadowNone @darkLessTransparent;
     }
 }

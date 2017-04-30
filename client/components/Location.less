@@ -3,12 +3,19 @@
 .container {
     border-radius: 6px;
     position: relative;
-    border: 1px solid @red;
-    background-color: @red;
-    color: #fff;
+    border: 1px solid @white;
+    // background-color: @red;
+    color: @white;
     cursor: pointer;
-    box-shadow: 0px 0px 9px 1px rgba(207,216,223,1);
+    // box-shadow: 0px 0px 9px 1px rgba(207,216,223,1);
     text-align: center;
     transition: all .3s ease;
     padding: .5em;
+    &:hover {
+        box-shadow: inset @boxShadowNone @stroke @darkLessTransparent, @boxShadowMd @darkTransparent;
+    }
+    &:focus,
+    &:active {
+        box-shadow: inset @boxShadowNone @stroke @darkLessTransparent, @boxShadowNone @darkLessTransparent;
+    }
 }

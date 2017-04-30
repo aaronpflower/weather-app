@@ -1,10 +1,19 @@
 @import '../base/variables.less';
 
 .container {
-    margin: auto;
-    border-radius: 6px;
-    padding: 2em;
-    max-width: 350px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
-    border: 1px solid #e6ecf0;
+	overflow: hidden;
+	text-align: center;
+	background: transparent;
+	color: @white;
+	justify-content: center;
+	align-items: center;
+}
+
+.content {
+	padding: 1.5em;
+	max-width: 625px !important;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+	border-radius: 6px;
+	background-color: @darkLessTransparent;
+	height: 100%;
 }
