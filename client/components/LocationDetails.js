@@ -3,6 +3,7 @@ import moment from 'moment'
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import classnames from 'classnames'
 import styles from './LocationDetails.less'
+import fonts from '../base/fonts.less';
 
 const LocationDetails = (props) => {
     return props.visible === false
@@ -12,55 +13,28 @@ const LocationDetails = (props) => {
                 <i className={classnames("fa fa-times", styles.close)} aria-hidden="true" onClick={props.close}></i>
             </Col>
             <Col xs={12}>
-                <p>Time: {moment.unix(props.conditions.currently.time).format("dddd, MMMM Do YYYY, h:mm:ss a")}</p>
+                <p className={fonts.smallText}>{moment.unix(props.conditions.currently.time).format("dddd, MMMM Do YYYY, h:mm:ss a")}</p>
             </Col>
             <Col xs={12}>
-                <p>Summary: {props.conditions.currently.summary}</p>
+                <p className={fonts.largeText}>{props.conditions.currently.temperature}°</p>
             </Col>
             <Col xs={12}>
-                <p>icon: {props.conditions.currently.icon}</p>
+                <p className={fonts.smallText}>icon: {props.conditions.currently.icon}</p>
             </Col>
             <Col xs={12}>
-                <p>nearestStormDistance: {props.conditions.currently.nearestStormDistance}</p>
+                <p className={fonts.smallText}>dewPoint: {props.conditions.currently.dewPoint}°</p>
             </Col>
             <Col xs={12}>
-                <p>nearestStormBearing: {props.conditions.currently.nearestStormBearing}</p>
+                <p className={fonts.smallText}>humidity: {Math.floor(props.conditions.currently.humidity * 100)}%</p>
             </Col>
             <Col xs={12}>
-                <p>precipIntensity: {props.conditions.currently.precipIntensity}</p>
+                <p className={fonts.smallText}>windSpeed: {props.conditions.currently.windSpeed}MPH</p>
             </Col>
             <Col xs={12}>
-                <p>precipProbability: {props.conditions.currently.precipProbability}</p>
+                <p className={fonts.smallText}>visibility: {props.conditions.currently.visibility} miles</p>
             </Col>
             <Col xs={12}>
-                <p>temperature: {props.conditions.currently.temperature}</p>
-            </Col>
-            <Col xs={12}>
-                <p>apparentTemperature: {props.conditions.currently.apparentTemperature}</p>
-            </Col>
-            <Col xs={12}>
-                <p>dewPoint: {props.conditions.currently.dewPoint}</p>
-            </Col>
-            <Col xs={12}>
-                <p>humidity: {props.conditions.currently.humidity}</p>
-            </Col>
-            <Col xs={12}>
-                <p>windSpeed: {props.conditions.currently.windSpeed}</p>
-            </Col>
-            <Col xs={12}>
-                <p>windBearing: {props.conditions.currently.windBearing}</p>
-            </Col>
-            <Col xs={12}>
-                <p>visibility: {props.conditions.currently.visibility}</p>
-            </Col>
-            <Col xs={12}>
-                <p>cloudCover: {props.conditions.currently.cloudCover}</p>
-            </Col>
-            <Col xs={12}>
-                <p>pressure: {props.conditions.currently.pressure}</p>
-            </Col>
-            <Col xs={12}>
-                <p>ozone: {props.conditions.currently.ozone}</p>
+                <p className={fonts.smallText}>pressure: {props.conditions.currently.pressure}MB</p>
             </Col>
         </Row>
 }
