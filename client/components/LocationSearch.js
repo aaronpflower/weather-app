@@ -72,10 +72,10 @@ class LocationSearch extends Component {
 						transitionLeaveTimeout={300}>
                         {content}
 					</ReactCSSTransitionGroup>
-                    <ErrorHandler
-                        text={this.state.error}
-                    />
                 </form>
+                <ErrorHandler
+                    text={this.state.error}
+                />
             </div>
         )
     }
