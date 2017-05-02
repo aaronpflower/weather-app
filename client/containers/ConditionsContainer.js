@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import styles from './ConditionsContainer.less'
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import classnames from 'classnames'
+import mapStateToProps from '../utils/mapStateToProps'
 
 import LocationDetails from '../components/LocationDetails'
 import LocationsStream from '../components/LocationsStream'
@@ -23,7 +24,7 @@ class ConditionsContainer extends Component{
     }
 
     handleLocationClick(e, id) {
-        this.props.state.weather.locations.filter(item => {
+        this.props.store.weather.locations.filter(item => {
             if (item.id === id) {
                 return this.setState({
                     LocationDetails: item.conditions,
@@ -45,9 +46,7 @@ class ConditionsContainer extends Component{
             <Row className={classnames(styles.container)}>
                 <Col xs={12} md={3} className={classnames(styles.content)}>
                     <LocationsStream
-                        locations={this.props.state.weather.locations}
                         onLocationClick={this.handleLocationClick}
-                        onAddLocation={this.handleAddLocation}
                     />
                 </Col>
                 <Col xs={12} md={7} className={classnames(styles.content)}>
@@ -61,12 +60,6 @@ class ConditionsContainer extends Component{
 
         )
     }
-}
-
-const mapStateToProps = (state) => {
-  return {
-       state: state
-  };
 }
 
 export default connect(mapStateToProps)(ConditionsContainer)

@@ -1,5 +1,5 @@
 const { SIGN_UP, LOGIN, FETCH_CURRENT_USER } = require('../actions/constants')
-const createReducer = require('./createReducer')    
+const createReducer = require('./createReducer')
 
 const initialState = {
     currentUser: null,

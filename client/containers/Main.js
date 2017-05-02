@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import Header from '../components/Header'
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import fonts from '../base/fonts.less'
+import mapStateToProps from '../utils/mapStateToProps'
 
 class Main extends Component {
     constructor(props) {
@@ -28,12 +29,6 @@ class Main extends Component {
             </Row>
         )
     }
-}
-
-const mapStateToProps = (state) => {
-  return {
-       state: state
-  };
 }
 
 export default connect(mapStateToProps)(Main)

@@ -3,17 +3,15 @@ import styles from './Location.less'
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
 const Location = ({ onClick, text }) => (
-  <Col xs={11} className={styles.container}
-    onClick={onClick}
-  >
-    {text}
-    <i className="fa fa-times" aria-hidden="true"></i>
-  </Col>
+	<div className={styles.container} onClick={onClick}>
+		{text}
+		<i className="fa fa-times" aria-hidden="true"></i>
+	</div>
 )
 
 Location.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired
+	onClick: PropTypes.func.isRequired,
+	text: PropTypes.string.isRequired
 }
 
 export default Location

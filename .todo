@@ -3,17 +3,16 @@
     2) Add docker
     3) Add linting
     4) Combine npm dev to watch run npm test together
-- Write tests for weather routes
 - Write tests for existing react components
 - Add relationship between user and cities
 - Make a consistent UI and better design
-    1) Add common loader and transition 
+    1) Add common loader and transition when action pending
     2) Clean up map state to props and make a cleaner differece between componenet state and Redux state, call redux state store
-- Migrate to React Router 4
+    3) Add weather icon based on condition icon
+    4) Clean up UI on conditions page
 - Add CSS autoprefixer
 - Sendgrid varify email after signup
-- Add better error handling for actions
-
+- Fix tests, not working on build
 
 User Not logged in
 1) By default home page has search bar front and center

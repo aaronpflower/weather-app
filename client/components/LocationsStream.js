@@ -1,31 +1,49 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
+import { connect } from 'react-redux'
 import Location from './Location'
 import styles from './LocationsStream.less'
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import fonts from '../base/fonts.less'
 import LocationsSearch from './LocationSearch'
+import mapStateToProps from '../utils/mapStateToProps'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import animation from '../base/animation.less'
 
-const LocationsStream = ({ locations , onLocationClick, onAddLocation}) => (
-    <Row className={styles.list}>
-      <Col xs={12}>
-        <h1 className={fonts.smallText}>Your Locations</h1>
-      </Col>
-      {locations.map(location =>
-        <Location
-          key={location.id}
-          text={location.conditions.location}
-          onClick={(e) => onLocationClick(e, location.id)}
-        />
-      )}
-    </Row>
-)
+class LocationsStream extends Component {
+	constructor(props) {
+		super(props)
+	}
 
-LocationsStream.propTypes = {
-  locations: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired
-  }).isRequired).isRequired,
-  onLocationClick: PropTypes.func.isRequired
+	render() {
+
+		let locationItems = this.props.store.weather.locations.map(location =>
+			<Location
+				key={location.id}
+				text={location.conditions.location}
+				onClick={(e) => this.props.onLocationClick(e, location.id)}
+			/>
+		)
+
+		return (
+			<Row className={styles.list}>
+				<Col xs={12}>
+					<h1 className={fonts.smallText}>Your Locations</h1>
+				</Col>
+				<Col xs={12}>
+					<ReactCSSTransitionGroup
+						transitionName={animation}
+						transitionEnterTimeout={500}
+						transitionLeaveTimeout={300}>
+						{locationItems}
+					</ReactCSSTransitionGroup>
+				</Col>
+			</Row>
+		)
+	}
 }
 
-export default LocationsStream
+LocationsStream.propTypes = {
+	onLocationClick: PropTypes.func.isRequired
+}
+
+export default connect(mapStateToProps)(LocationsStream)

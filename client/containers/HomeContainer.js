@@ -8,6 +8,7 @@ import Button from '../components/Button'
 import fonts from '../base/fonts.less'
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import LocationSearch from '../components/LocationSearch';
+import mapStateToProps from '../utils/mapStateToProps'
 
 class HomeContainer extends Component{
     constructor(props) {
@@ -29,12 +30,6 @@ class HomeContainer extends Component{
             </Row>
         )
     }
-}
-
-const mapStateToProps = (state) => {
-  return {
-       state: state
-  };
 }
 
 export default connect(mapStateToProps)(HomeContainer)

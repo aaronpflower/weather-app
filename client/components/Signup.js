@@ -9,6 +9,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import classnames from 'classnames';
 import fonts from '../base/fonts.less';
 import ErrorHandler from '../utils/errorHandler'
+import mapStateToProps from '../utils/mapStateToProps'
 
 class Signup extends Component {
     constructor(props) {
@@ -79,12 +80,6 @@ class Signup extends Component {
             </Row>
         )
     }
-}
-
-const mapStateToProps = (state) => {
-  return {
-       state: state
-  };
 }
 
 export default connect(mapStateToProps)(Signup)

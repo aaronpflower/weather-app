@@ -7,6 +7,10 @@ import Input from './Input'
 import styles from './LocationSearch.less'
 import classnames from 'classnames'
 import ErrorHandler from '../utils/errorHandler'
+import mapStateToProps from '../utils/mapStateToProps'
+import animation from '../base/animation.less'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Loader from '../utils/loader'
 
 class LocationSearch extends Component {
     constructor(props) {
@@ -30,6 +34,9 @@ class LocationSearch extends Component {
             this.props.dispatch(getCurrentWeather(this.state.location))
             .then(res => {
                 if (window.location.hash != '#/conditions') hashHistory.push('conditions');
+                this.setState({
+                    location: ''
+                })
             })
             .catch(err => {
                 this.setState({ error: 'Opps something went wrong, please try again' })
@@ -42,9 +49,15 @@ class LocationSearch extends Component {
     }
 
     render() {
+        let content
+        if (this.props.store.weather.isLoading) {
+            content = <Loader/>
+        } else {
+            content = <i className={classnames("fa fa-search", styles.search)} aria-hidden="true"></i>
+        }
         return (
             <div className={styles.container}>
-                <form onSubmit={this.handleLocationSearch}>
+                <form onSubmit={this.handleLocationSearch} className={styles.form}>
                     <Input
                         style={styles.input}
                         type="text"
@@ -53,7 +66,12 @@ class LocationSearch extends Component {
                         value={this.state.location}
                     />
                     <input type="submit" className={styles.submit}/>
-                    <i className="fa fa-search" aria-hidden="true"></i>
+                    <ReactCSSTransitionGroup
+						transitionName={animation}
+						transitionEnterTimeout={500}
+						transitionLeaveTimeout={300}>
+                        {content}
+					</ReactCSSTransitionGroup>
                     <ErrorHandler
                         text={this.state.error}
                     />
@@ -61,12 +79,6 @@ class LocationSearch extends Component {
             </div>
         )
     }
-}
-
-const mapStateToProps = (state) => {
-  return {
-       state: state
-  };
 }
 
 export default connect(mapStateToProps)(LocationSearch)
