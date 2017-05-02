@@ -21,7 +21,7 @@ const Header = function(props) {
                 <i className="fa fa-cloud" aria-hidden="true"></i>
             </div>
             <Link className={styles.item} to="/">
-                <h1 className={classnames(styles.item, fonts.largeText)}>Weather App</h1>
+                <h1 className={classnames(styles.item, fonts.largeText)}>Weather Wherever</h1>
             </Link>
             {search}
             <div className={classnames(styles.item, styles.menu)}>
