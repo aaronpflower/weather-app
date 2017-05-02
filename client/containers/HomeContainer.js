@@ -20,7 +20,7 @@ class HomeContainer extends Component{
             <Row className={classnames(styles.container)}>
                 <Col xs={12} className={styles.content}>
                     <Row className={styles.innerContent}>
-                        <h1 className={fonts.largeText}>Wheather Wherever</h1>
+                        <h1 className={fonts.largeText}>Weather Wherever</h1>
                         <p className={fonts.smallText}>Enter any city and access current weather and forcasts from around the world</p>
                         <LocationSearch />
                         <p className={fonts.smallText}>Or create an account and save you favorite places!</p>
