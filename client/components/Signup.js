@@ -8,13 +8,15 @@ import styles from './Signup.less'
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import classnames from 'classnames';
 import fonts from '../base/fonts.less';
+import ErrorHandler from '../utils/errorHandler'
 
 class Signup extends Component {
     constructor(props) {
         super(props)
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            error: ''
         }
         this.handleUpdateEmail = this.handleUpdateEmail.bind(this)
         this.handleUpdatePassword = this.handleUpdatePassword.bind(this)
@@ -34,22 +36,25 @@ class Signup extends Component {
     }
 
     handleSignup() {
-        this.props.dispatch(signUp(this.state.email, this.state.password))
-        .then(res => {
-            if (window.location.hash != '#/conditions') hashHistory.push('conditions');
-        })
-        .catch(err => {
-            // TODO: Do something with this error
-            console.log(err)
-        })
+        if (this.state.password != '' && this.state.email != '') {
+            this.props.dispatch(signUp(this.state.email, this.state.password))
+            .then(res => {
+                if (window.location.hash != '#/conditions') hashHistory.push('conditions');
+            })
+            .catch(err => {
+                this.setState({ error: 'Opps something went wrong, please try again' })
+            })
+        } else {
+            this.setState({ error: 'Please enter name and password' })
+        }
     }
 
     render() {
         return (
             <Row className={classnames(styles.container)}>
                 <Col xs={12} className={styles.content}>
-                    <Row className={styles.innerContent}>
-                        <h1 className={fonts.largeText}>Create an Account!</h1>
+                    <h1 className={fonts.largeText}>Create an Account!</h1>
+                    <form onSubmit={this.handleSignup} className={styles.form}>
                         <Input
                             type="email"
                             placeholder="Please Enter Email"
@@ -62,12 +67,14 @@ class Signup extends Component {
                             onChange={this.handleUpdatePassword}
                             value={this.state.password}
                         />
-                        <Button 
-                            onClick={this.handleSignup}
-                            type='button'
+                        <Button
+                            type='submit'
                             innerText='Create'
                         />
-                    </Row>
+                        <ErrorHandler
+                            text={this.state.error}
+                        />
+                    </form>
                 </Col>
             </Row>
         )
