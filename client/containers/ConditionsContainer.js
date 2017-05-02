@@ -17,11 +17,9 @@ class ConditionsContainer extends Component{
             location: '',
             showLocationDetails: false,
             LocationDetails: {},
-            showLocationSearch: false
         }
         this.handleLocationClick = this.handleLocationClick.bind(this)
         this.handleLocationClose = this.handleLocationClose.bind(this)
-        this.handleAddLocation = this.handleAddLocation.bind(this)
     }
 
     handleLocationClick(e, id) {
@@ -42,30 +40,9 @@ class ConditionsContainer extends Component{
         })
     }
 
-    handleAddLocation() {
-        if (this.state.showLocationSearch === false) {
-            this.setState({
-                showLocationSearch: true
-            })
-        } else {
-            this.setState({
-                showLocationSearch: false
-            })
-        }
-    }
-
     render() {
-        let search
-        if (this.state.showLocationSearch) {
-            search = <LocationSearch/>;
-        } else {
-            search = null;
-        }
         return (
             <Row className={classnames(styles.container)}>
-                <Col xs={12}>
-                    {search}
-                </Col>
                 <Col xs={12} md={3} className={classnames(styles.content)}>
                     <LocationsStream
                         locations={this.props.state.weather.locations}

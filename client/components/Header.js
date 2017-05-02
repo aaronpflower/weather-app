@@ -6,8 +6,15 @@ import styles from './Header.less'
 import Button from '../components/Button'
 import classnames from 'classnames'
 import fonts from '../base/fonts.less'
+import LocationSearch from '../components/LocationSearch'
 
 const Header = function(props) {
+    let search
+    if (window.location.hash == '#/conditions') {
+        search = <LocationSearch/>;
+    } else {
+        search = null;
+    }
     return (
         <div className={styles.container}>
             <div className={styles.cloud}>
@@ -16,13 +23,14 @@ const Header = function(props) {
             <Link className={styles.item} to="/">
                 <h1 className={classnames(styles.item, fonts.largeText)}>Weather App</h1>
             </Link>
-
+            {search}
             <div className={classnames(styles.item, styles.menu)}>
+                
                 <Link to="/signup">
                     <Button type='Button' innerText='Signup'/>
                 </Link>
                 <Link to="/login">
-                    <Button type='button' innerText='Already have an account?'/>
+                    <Button type='button' innerText='Login'/>
                 </Link>
             </div>
         </div>

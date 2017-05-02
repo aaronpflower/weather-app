@@ -38,14 +38,13 @@ class LocationSearch extends Component {
         return (
             <div className={styles.container}>
                 <Input
+                    style={styles.input}
                     type="text"
                     placeholder="Enter Location"
                     onChange={this.handleUpdateLocation}
                     value={this.state.location}
                 />
-                <Button onClick={this.handleLocationSearch} type="button" innerText='Search'>
-                    <i className={classnames("fa fa-search", styles.searchIcon)} aria-hidden="true"></i>
-                </Button>
+                <i onClick={this.handleLocationSearch} className={classnames("fa fa-search", styles.search)} aria-hidden="true"></i>
             </div>
         )
     }

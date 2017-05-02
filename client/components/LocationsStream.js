@@ -9,9 +9,6 @@ const LocationsStream = ({ locations , onLocationClick, onAddLocation}) => (
     <Row className={styles.list}>
       <Col xs={12}>
         <h1 className={fonts.smallText}>Your Locations</h1>
-        <div onClick={onAddLocation} className={styles.plus}>
-          <i className="fa fa-plus-circle" aria-hidden="true"></i>
-        </div>
       </Col>
       {locations.map(location =>
         <Location
@@ -24,7 +21,6 @@ const LocationsStream = ({ locations , onLocationClick, onAddLocation}) => (
 )
 
 LocationsStream.propTypes = {
-  onAddLocation: PropTypes.func.isRequired,
   locations: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired

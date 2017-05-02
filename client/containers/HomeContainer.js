@@ -19,11 +19,12 @@ class HomeContainer extends Component{
         return (
             <Row className={classnames(styles.container)}>
                 <Col xs={12} className={styles.content}>
-                    <h1 className={fonts.largeText}>Welcome to the Weather</h1>
-                    <p className={fonts.smallText}>Enter any city and access current weather and forcasts from around the world</p>
-                    <LocationSearch />
-                    <p className={fonts.smallText}>Or create an account and save you favorite places!</p>
-
+                    <Row className={styles.innerContent}>
+                        <h1 className={fonts.largeText}>Wheather Wherever</h1>
+                        <p className={fonts.smallText}>Enter any city and access current weather and forcasts from around the world</p>
+                        <LocationSearch />
+                        <p className={fonts.smallText}>Or create an account and save you favorite places!</p>
+                    </Row>
                 </Col>
             </Row>
         )

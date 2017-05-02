@@ -49,25 +49,26 @@ class Login extends Component{
         return (
             <Row className={classnames(styles.container)}>
                 <Col xs={12} className={styles.content}>
-                    <h1 className={fonts.largeText}>Login to your account</h1>
-                    <Input
-                        type="email"
-                        placeholder="Please Enter Email"
-                        onChange={this.handleUpdateEmail}
-                        value={this.state.email}
-                    />
-                    <Input
-                        type="password"
-                        placeholder="Please Enter Password"
-                        onChange={this.handleUpdatePassword}
-                        value={this.state.password}
-                    />
-                    <Button 
-                        onClick={this.handleLogin}
-                        type='button'
-                        innerText='Login'
-                    />
-
+                    <Row className={styles.innerContent}>
+                        <h1 className={fonts.largeText}>Login to your account</h1>
+                        <Input
+                            type="email"
+                            placeholder="Please Enter Email"
+                            onChange={this.handleUpdateEmail}
+                            value={this.state.email}
+                        />
+                        <Input
+                            type="password"
+                            placeholder="Please Enter Password"
+                            onChange={this.handleUpdatePassword}
+                            value={this.state.password}
+                        />
+                        <Button 
+                            onClick={this.handleLogin}
+                            type='button'
+                            innerText='Login'
+                        />
+                    </Row>
                 </Col>
             </Row>
         )

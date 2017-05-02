@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react'
 import styles from './Input.less'
+import classnames from 'classnames'
 
 const Input = (props) => (
     <input 
-        className={styles.input}
+        className={classnames(styles.input, props.style)}
         placeholder={props.placeholder}
         onChange={props.onChange}
         value={props.value}

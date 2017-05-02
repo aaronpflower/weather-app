@@ -48,25 +48,26 @@ class Signup extends Component {
         return (
             <Row className={classnames(styles.container)}>
                 <Col xs={12} className={styles.content}>
-                    <h1 className={fonts.largeText}>Create an Account!</h1>
-                    <p className={fonts.smallText}>And save you favorite places!</p>
-                    <Input
-                        type="email"
-                        placeholder="Please Enter Email"
-                        onChange={this.handleUpdateEmail}
-                        value={this.state.email}
-                    />
-                    <Input
-                        type="password"
-                        placeholder="Please Enter Password"
-                        onChange={this.handleUpdatePassword}
-                        value={this.state.password}
-                    />
-                    <Button 
-                        onClick={this.handleSignup}
-                        type='button'
-                        innerText='Create My Account'
-                    />
+                    <Row className={styles.innerContent}>
+                        <h1 className={fonts.largeText}>Create an Account!</h1>
+                        <Input
+                            type="email"
+                            placeholder="Please Enter Email"
+                            onChange={this.handleUpdateEmail}
+                            value={this.state.email}
+                        />
+                        <Input
+                            type="password"
+                            placeholder="Please Enter Password"
+                            onChange={this.handleUpdatePassword}
+                            value={this.state.password}
+                        />
+                        <Button 
+                            onClick={this.handleSignup}
+                            type='button'
+                            innerText='Create'
+                        />
+                    </Row>
                 </Col>
             </Row>
         )
