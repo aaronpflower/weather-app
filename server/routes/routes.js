@@ -8,7 +8,7 @@ module.exports = app => {
 
     app.post('/api/weather', WeatherController.getCurrentWeather);
 
-    // app.get('/api/user', UserController.currentUser);
+    app.get('/api/user', UserController.currentUser);
 
     app.post('/api/users/add', UserController.add);
 

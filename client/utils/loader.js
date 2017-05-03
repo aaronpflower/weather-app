@@ -3,7 +3,6 @@ import { getCurrentWeather } from '../actions/actions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import styles from './loader.less'
-import mapStateToProps from '../utils/mapStateToProps'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const Loader = (props) => (

@@ -3,7 +3,8 @@ const createReducer = require('./createReducer')
 
 const initialState = {
     currentUser: null,
-    isLoading: false
+    isLoading: false,
+    isLoggedIn: false
 }
 
 module.exports = createReducer(initialState, {
@@ -24,12 +25,16 @@ module.exports = createReducer(initialState, {
             })
         }
         return state
-    }
+    },
 
-    // [FETCH_CURRENT_USER]: (state, action) => {
-    //     return Object.assign({}, state, {
-    //         currentUser: action.payload
-    //     })
-    // }
+    [FETCH_CURRENT_USER]: (state, action) => {
+        if (!action.pending && !action.error) {
+            return Object.assign({}, state, {
+                currentUser: action.payload.data.username,
+                isLoggedIn: true
+            })
+        }
+        return state
+    }
 
 })

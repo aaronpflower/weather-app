@@ -21,8 +21,39 @@ function comparePass(userPassword, databasePassword) {
 	return bcrypt.compareSync(userPassword, databasePassword);
 }
 
+function ensureAuthenticated(req, res) {
+	if (!(req.headers && req.headers.authorization)) {
+		return res.status(400).json({
+			status: 'Please log in'
+		});
+	}
+	const header = req.headers.authorization.split(' ');
+	const token = header[1];
+	localAuth.decodeToken(token, (err, payload) => {
+		if (err) {
+			return res.status(401).json({
+				status: 'Token has expired'
+			});
+		} else {
+			return knex('users').where({id: parseInt(payload.data)}).first()
+			.then((user) => {
+				res.status(200).json({
+					status: 'success',
+					username: user.username
+				});
+			})
+			.catch((err) => {
+				res.status(500).json({
+					status: 'error'
+				});
+			});
+		}
+	});
+}
+
 module.exports = {
 	createUser,
 	getUser,
-	comparePass
+	comparePass,
+	ensureAuthenticated
 };

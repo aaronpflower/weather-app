@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
 import { fetchCurrentUser } from '../actions/actions'
 import configureStore from '../store/configureStore'
 import HomeContainer from '../containers/HomeContainer'
@@ -12,20 +12,11 @@ import LocationSearch from '../components/LocationSearch';
 
 let store = configureStore()
 
-// store.dispatch(fetchCurrentUser())
-
-function loggedIn() { 
-    let token = localStorage.getItem('token')
-    return token === null; 
-}
-
-function requireAuth(nextState, replaceState) {
-    if (loggedIn()) {
-        replaceState({ nextPathname: nextState.location.pathname }, '/')
+class Root extends Component {
+    componentWillMount() {
+        store.dispatch(fetchCurrentUser())
     }
-}
 
-export default class Root extends Component {
     render() {
         return (
            <Provider store={store}>
@@ -42,3 +33,5 @@ export default class Root extends Component {
         )
     }
 }
+
+export default Root
