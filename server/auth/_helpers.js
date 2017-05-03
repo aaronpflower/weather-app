@@ -22,7 +22,6 @@ function comparePass(userPassword, databasePassword) {
 }
 
 function ensureAuthenticated(req, res) {
-	console.log('here')
 	if (!(req.headers && req.headers.authorization)) {
 		return res.status(400).json({
 			status: 'Please log in'

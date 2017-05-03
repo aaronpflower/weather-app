@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Provider, connect } from 'react-redux'
-import { fetchCurrentUser } from '../actions/actions'
 import configureStore from '../store/configureStore'
 import HomeContainer from '../containers/HomeContainer'
 import Main from '../containers/Main'
@@ -13,9 +12,6 @@ import LocationSearch from '../components/LocationSearch';
 let store = configureStore()
 
 class Root extends Component {
-    componentWillMount() {
-        store.dispatch(fetchCurrentUser())
-    }
 
     render() {
         return (

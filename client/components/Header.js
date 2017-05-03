@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { getCurrentWeather } from '../actions/actions'
+import { getCurrentWeather, fetchCurrentUser } from '../actions/actions'
 import { connect } from 'react-redux'
 import { logout } from '../actions/actions'
 import { Link } from 'react-router'
@@ -51,23 +51,21 @@ class Header extends Component {
             })
         }
     }
-    componentDidMount() {
-        this.updateHeader(this.props)
+    componentWillMount() {
+        this.props.dispatch(fetchCurrentUser())
     }
-    
+
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         this.updateHeader(nextProps)
     }
 
     render() {
-        console.log(this)
-        // let search
-        // if (window.location.hash == '#/conditions') {
-        //     search = <LocationSearch/>;
-        // } else {
-        //     search = null;
-        // }
+        let search
+        if (window.location.hash == '#/conditions') {
+            search = <LocationSearch/>;
+        } else {
+            search = null;
+        }
         return (
             <div className={styles.container}>
                 <div className={styles.cloud}>
@@ -76,7 +74,7 @@ class Header extends Component {
                 <Link className={styles.item} to="/">
                     <h1 className={classnames(styles.item, fonts.largeText)}>Weather Wherever</h1>
                 </Link>
-                
+                {search}
                 <div className={classnames(styles.item, styles.menu)}>
                     {this.state.content}
                 </div>
