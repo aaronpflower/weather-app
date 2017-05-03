@@ -22,6 +22,7 @@ function comparePass(userPassword, databasePassword) {
 }
 
 function ensureAuthenticated(req, res) {
+	console.log('here')
 	if (!(req.headers && req.headers.authorization)) {
 		return res.status(400).json({
 			status: 'Please log in'
@@ -51,9 +52,39 @@ function ensureAuthenticated(req, res) {
 	});
 }
 
+function invalidateToken(req, res) {
+	if (!(req.headers && req.headers.authorization)) {
+		return res.status(400).json({
+			status: 'No token'
+		});
+	}
+	const header = req.headers.authorization.split(' ');
+	const token = header[1];
+	localAuth.decodeToken(token, (err, payload) => {
+	if (err) {
+			return res.status(200).json({
+				status: 'no token'
+			});
+		} else {
+			return knex('users').where({id: parseInt(payload.data)}).first()
+			.then((user) => {
+				res.status(200).json({
+					status: 'success'
+				});
+			})
+			.catch((err) => {
+				res.status(500).json({
+					status: 'error'
+				});
+			});
+		}
+	});
+}
+
 module.exports = {
 	createUser,
 	getUser,
 	comparePass,
-	ensureAuthenticated
+	ensureAuthenticated,
+	invalidateToken
 };

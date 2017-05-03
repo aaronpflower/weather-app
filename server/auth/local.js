@@ -14,7 +14,6 @@ function encodeToken(user) {
 function decodeToken(token, callback) {
 	return jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
 		if (err) {
-			console.log(err)
 			return callback('Token Has expired.')
 		}
 		return callback(null, decoded)

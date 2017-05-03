@@ -14,4 +14,6 @@ module.exports = app => {
 
     app.post('/api/users/login', UserController.login);
 
+    app.post('/api/users/logout', UserController.logout);
+
 }

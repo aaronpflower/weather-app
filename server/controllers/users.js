@@ -41,6 +41,10 @@ module.exports = {
                 });
             });
     },
+
+    logout: (req, res, next) => {
+        authHelpers.invalidateToken(req, res, next)
+    },
     
     currentUser: (req, res, next) => {
         authHelpers.ensureAuthenticated(req, res, next)

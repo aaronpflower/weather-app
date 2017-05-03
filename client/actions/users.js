@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { LOGIN, SIGN_UP, FETCH_CURRENT_USER } = require('./constants')
+const { LOGIN, SIGN_UP, FETCH_CURRENT_USER, LOGOUT } = require('./constants')
 
 // TODO: sanitized data and form validation, find framework for both
 
@@ -23,12 +23,11 @@ const actions = {
                             return res
                         })
                         .catch(err => {
-                            console.log(err)
                             dispatch(Object.assign({}, action, {error: true, payload: err}))
                             throw err 
                         })
                 }
-                return dispatch(Object.assign({}, action, {payload: 'no user'}))
+                return dispatch(Object.assign({}, action, {error: true, payload: 'no user'}))
         }
     },
 
@@ -52,6 +51,7 @@ const actions = {
 
     login(email, pass) {
         const action = { type: LOGIN }
+        const token = localStorage.getItem('token');
         return dispatch => {
 
             dispatch(Object.assign({}, action, { pending: true }))
@@ -65,6 +65,34 @@ const actions = {
                     dispatch(Object.assign({}, action, {error: true, payload: err}))
                     throw err
                 })
+        }
+    },
+
+    logout() {
+        const action = { type: LOGOUT }
+        const token = localStorage.getItem('token');
+        return dispatch => {
+            if (token) {
+                dispatch(Object.assign({}, action, { pending: true }))
+
+                return axios({
+                    url: 'api/users/logout',
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer ' + token
+                    }
+                })
+                .then(res => {
+                    dispatch(Object.assign({}, action, { payload: res }))
+                    return res
+                })
+                .catch(err => {
+                    dispatch(Object.assign({}, action, {error: true, payload: err}))
+                    throw err
+                })
+            }
+            return dispatch(Object.assign({}, action, { payload: 'no user'}))
         }
     }
 }

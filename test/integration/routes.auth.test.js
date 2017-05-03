@@ -75,7 +75,7 @@ describe('routes : auth', () => {
             });
         });
     });
-    // TODO: Add current user route
+    
     describe('GET /api/user', () => {
         it('should return a success with user data', (done) => {
             chai.request(app)
@@ -110,5 +110,40 @@ describe('routes : auth', () => {
             });
         });
     });
+    // TODO: Invalidate token
+    // describe('POST /api/users/logout', () => {
+    //     it('should return a success with and invalidate the token', (done) => {
+    //         chai.request(app)
+    //         .post('/api/users/login')
+    //         .send({
+    //             username: 'jeremy',
+    //             password: 'johnson123'
+    //         })
+    //         .end((error, response) => {
+    //             should.not.exist(error);
+    //             chai.request(app)
+    //             .post('/api/users/logout')
+    //             .set('authorization', 'Bearer ' + response.body.token)
+    //             .end((err, res) => {
+    //                 should.not.exist(err);
+    //                 res.status.should.eql(200);
+    //                 res.type.should.eql('application/json');
+    //                 res.body.status.should.eql('success');
+    //                 done();
+    //             });
+    //         });
+    //     });
+    //     it('should return if user is not login', (done) => {
+    //         chai.request(app)
+    //         .post('/api/users/logout')
+    //         .end((err, res) => {
+    //             should.exist(err);
+    //             res.status.should.eql(400);
+    //             res.type.should.eql('application/json');
+    //             res.body.status.should.eql('Please log in');
+    //             done();
+    //         });
+    //     });
+    // });
 
 })
