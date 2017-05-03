@@ -39,8 +39,9 @@ const actions = {
 
             return axios.post('api/users/add', { username: email, password: pass })
                 .then(res => {
+                    console.log(res)
                     dispatch(Object.assign({}, action, { payload: res }))
-                    return res
+                    return dispatch(actions.fetchCurrentUser())
                 })
                 .catch(err => {
                     dispatch(Object.assign({}, action, {error: true, payload: err}))
@@ -59,7 +60,7 @@ const actions = {
             return axios.post('api/users/login', { username: email, password: pass })
                 .then(res => {
                     dispatch(Object.assign({}, action, { payload: res }))
-                    return res
+                    return dispatch(actions.fetchCurrentUser())
                 })
                 .catch(err => {
                     dispatch(Object.assign({}, action, {error: true, payload: err}))

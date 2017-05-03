@@ -10,6 +10,7 @@ const initialState = {
 module.exports = createReducer(initialState, {
     [SIGN_UP]: (state, action) => {
         if (!action.pending && !action.error) {
+            localStorage.setItem('token', action.payload.data.token);
             return Object.assign({}, state, {
                 currentUser: action.payload.data
             })

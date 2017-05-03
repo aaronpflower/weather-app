@@ -36,7 +36,8 @@ class Signup extends Component {
         })
     }
 
-    handleSignup() {
+    handleSignup(e) {
+        e.preventDefault();
         if (this.state.password != '' && this.state.email != '') {
             this.props.dispatch(signUp(this.state.email, this.state.password))
             .then(res => {

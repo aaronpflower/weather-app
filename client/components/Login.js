@@ -35,7 +35,8 @@ class Login extends Component{
         })
     }
 
-    handleLogin() {
+    handleLogin(e) {
+        e.preventDefault();
         if (this.state.password != '' && this.state.email != '') {
             this.props.dispatch(login(this.state.email, this.state.password))
             .then(res => {

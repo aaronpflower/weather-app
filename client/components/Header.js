@@ -14,10 +14,12 @@ class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            content: null
+            content: null,
+            searchBar: null
         }
         this.updateHeader = this.updateHeader.bind(this)
         this.handleLogout = this.handleLogout.bind(this)
+        this.updateSearch = this.updateSearch.bind(this)
     }
 
     handleLogout() {
@@ -51,21 +53,29 @@ class Header extends Component {
             })
         }
     }
+
+    updateSearch(nextProps) {
+        if (window.location.hash == '#/conditions') {
+            this.setState({
+                searchBar: <LocationSearch/>
+            })
+        } else {
+            this.setState({
+                searchBar: null
+            })
+        }
+    }
+
     componentWillMount() {
         this.props.dispatch(fetchCurrentUser())
     }
 
     componentWillReceiveProps(nextProps) {
         this.updateHeader(nextProps)
+        this.updateSearch(nextProps)
     }
 
     render() {
-        let search
-        if (window.location.hash == '#/conditions') {
-            search = <LocationSearch/>;
-        } else {
-            search = null;
-        }
         return (
             <div className={styles.container}>
                 <div className={styles.cloud}>
@@ -74,7 +84,7 @@ class Header extends Component {
                 <Link className={styles.item} to="/">
                     <h1 className={classnames(styles.item, fonts.largeText)}>Weather Wherever</h1>
                 </Link>
-                {search}
+                {this.state.searchBar}
                 <div className={classnames(styles.item, styles.menu)}>
                     {this.state.content}
                 </div>

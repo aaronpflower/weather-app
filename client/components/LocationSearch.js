@@ -29,7 +29,8 @@ class LocationSearch extends Component {
         })
     }
 
-    handleLocationSearch() {
+    handleLocationSearch(e) {
+        e.preventDefault();
         if (this.state.location != '') {
             this.props.dispatch(getCurrentWeather(this.state.location))
             .then(res => {
